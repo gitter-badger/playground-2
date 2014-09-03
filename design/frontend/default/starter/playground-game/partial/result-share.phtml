@@ -17,7 +17,7 @@ if(isset($this->game)) :
     <div
         id="datas-result"
         data-url="<?php echo $this->url('frontend/' . $this->gameType, array("id" => $this->game->getIdentifier(), 'channel' => $this->channel), array('force_canonical' => true)); ?>"
-        data-secretkey="<?php echo $this->secretKey; ?>" data-fbmsg="<?php echo $fbShareMsg; ?>"
+        data-secretkey="<?php echo $this->secretKey; ?>" data-fbmsg="<?php echo $fbShareMsg; ?>" data-fbtitle="<?php echo 'Plateforme playground'; ?>"
         data-twmsg="<?php echo $twShareMsg; ?>" data-fbrequest="<?php echo $fbRequestMsg; ?>"
         data-sociallink="<?php echo $this->socialLinkUrl; ?>">
     </div>

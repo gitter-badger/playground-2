@@ -11,7 +11,7 @@ $form->prepare();
         <?php echo $this->formElementErrors()
 						->setMessageOpenFormat('<div class="alert alert-danger">')
 						->setMessageCloseString('</div>')->render($form->get(('title'))) ?>
-	</div>
+ 	</div>
 	<div class="form-group">
         <?php echo $this->formLabel($form->get('identifier')); ?>
         <?php echo $this->formInput($form->get(('identifier'))->setAttribute('class', 'form-control')); ?>
@@ -34,28 +34,28 @@ $form->prepare();
         <?php $today = new \DateTime('now');?>
         <?php $today = $today->format('d/m/Y');?>
     	<?php echo $this->formLabel($form->get('publicationDate')); ?>
-        <?php echo $this->formDateTime($form->get(('publicationDate'))->setAttribute('class', 'form-control date')); ?>
+        <?php echo $this->formDateTime($form->get(('publicationDate'))->setAttribute('class', 'form-control datepicker')); ?>
         <?php echo $this->formElementErrors()
 						->setMessageOpenFormat('<div class="alert alert-danger">')
 						->setMessageCloseString('</div>')->render($form->get(('publicationDate'))); ?>
 	</div>
 	<div class="form-group">
     	<?php echo $this->formLabel($form->get('startDate')); ?>
-        <?php echo $this->formDateTime($form->get(('startDate'))->setAttribute('class', 'form-control date')); ?>
+        <?php echo $this->formDateTime($form->get(('startDate'))->setAttribute('class', 'form-control datepicker')); ?>
         <?php echo $this->formElementErrors()
 						->setMessageOpenFormat('<div class="alert alert-danger">')
 						->setMessageCloseString('</div>')->render($form->get(('startDate'))); ?>
 	</div>
 	<div class="form-group">
     	<?php echo $this->formLabel($form->get('endDate')); ?>
-    	<?php echo $this->formDateTime($form->get(('endDate'))->setAttribute('class', 'form-control date')); ?>
+    	<?php echo $this->formDateTime($form->get(('endDate'))->setAttribute('class', 'form-control datepicker')); ?>
         <?php echo $this->formElementErrors()
 						->setMessageOpenFormat('<div class="alert alert-danger">')
 						->setMessageCloseString('</div>')->render($form->get(('endDate'))); ?>
 	</div>
 	<div class="form-group">
         <?php echo $this->formLabel($form->get('closeDate')); ?>
-    	<?php echo $this->formDateTime($form->get(('closeDate'))->setAttribute('class', 'form-control date')); ?>
+    	<?php echo $this->formDateTime($form->get(('closeDate'))->setAttribute('class', 'form-control datepicker')); ?>
         <?php echo $this->formElementErrors()
 						->setMessageOpenFormat('<div class="alert alert-danger">')
 						->setMessageCloseString('</div>')->render($form->get(('closeDate'))); ?>
@@ -98,6 +98,64 @@ $form->prepare();
 						->setMessageOpenFormat('<div class="alert alert-danger">')
 						->setMessageCloseString('</div>')->render($form->get(('playBonus'))) ?>
 	</div>
+  <div class="label-input checkbox">
+        <?php echo $this->formLabel($form->get('anonymousAllowed')); ?>
+        <?php echo $this->formCheckbox($form->get('anonymousAllowed')); ?>
+        <?php echo $this->formElementErrors($form->get('anonymousAllowed')) ?>
+  </div>
+  <div class="form-group">
+        <?php echo $this->formLabel($form->get('anonymousIdentifier')); ?>
+        <?php echo $this->formInput($form->get(('anonymousIdentifier'))->setAttribute('class', 'form-control')); ?>
+        <?php echo $this->formElementErrors()
+						->setMessageOpenFormat('<div class="alert alert-danger">')
+						->setMessageCloseString('</div>')->render($form->get(('anonymousIdentifier'))); ?>
+  </div>
+  <div class="label-input">
+        <?php echo $this->formLabel($form->get('mailWinner')); ?>
+        <?php echo $this->formSelect($form->get('mailWinner')); ?>
+        <?php echo $this->formElementErrors($form->get('mailWinner')) ?>
+  </div>
+  <div class="label-input">
+        <?php echo $this->formTextarea($form->get('mailWinnerBlock')) . $this->formElementErrors($form->get('mailWinnerBlock')) ?>
+        <?php $this->QgCKEditor(
+            'mailWinnerBlock',
+                array(
+                    'BasePath' => $this->libAssetPath('js/ckeditor'),
+                    'Width' => "99%",
+                    'Height' => "300",
+                    'uiColor' => '#9AB8F3',
+                    'Toolbar'=> array(
+                         array('Bold','Italic','Underline','Subscript','Superscript'),
+                         array('NumberedList','BulletedList','Outdent','Indent'),
+                         array('Link','Unlink'),
+                     )
+                )
+            );
+        ?>
+    </div>
+  <div class="label-input">
+        <?php echo $this->formLabel($form->get('mailLooser')); ?>
+        <?php echo $this->formSelect($form->get('mailLooser')); ?>
+        <?php echo $this->formElementErrors($form->get('mailLooser')) ?>
+  </div>
+  <div class="label-input">
+        <?php echo $this->formTextarea($form->get('mailLooserBlock')) . $this->formElementErrors($form->get('mailLooserBlock')) ?>
+        <?php $this->QgCKEditor(
+            'mailLooserBlock',
+                array(
+                    'BasePath' => $this->libAssetPath('js/ckeditor'),
+                    'Width' => "99%",
+                    'Height' => "300",
+                    'uiColor' => '#9AB8F3',
+                    'Toolbar'=> array(
+                         array('Bold','Italic','Underline','Subscript','Superscript'),
+                         array('NumberedList','BulletedList','Outdent','Indent'),
+                         array('Link','Unlink'),
+                     )
+                )
+            );
+        ?>
+    </div>
 </div>
 
 <div class="tab-pane" id="facebook">
@@ -226,6 +284,12 @@ $form->prepare();
 	    	<img src="<?php echo $this->basePath($form->get('fbShareImage')->getValue()); ?>" />
 	    <?php endif;?>
     </div>
+  <div class="form-group">
+      <?php echo $this->formLabel($form->get('fbRequestMessage')); ?>
+      <?php echo $this->formTextarea($form->get(('fbRequestMessage'))->setAttribute('class', 'form-control')->setAttribute('row', '4')) . $this->formElementErrors()
+            ->setMessageOpenFormat('<div class="alert alert-danger">')
+            ->setMessageCloseString('</div>')->render($form->get(('fbRequestMessage'))) ?>
+    </div>
 	<div class="form-group twshare-msg">
 	    <?php echo $this->formLabel($form->get('twShareMessage')); ?>
 	    <?php echo $this->formTextarea($form->get(('twShareMessage'))->setAttribute('class', 'form-control')->setAttribute('row', '4')) . $this->formElementErrors()
@@ -235,6 +299,16 @@ $form->prepare();
 </div>
 
 <div class="tab-pane" id="design">
+  <div class="label-input">
+        <?php echo $this->formLabel($form->get('steps')); ?>
+        <?php echo $this->formInput($form->get('steps')); ?>
+        <?php echo $this->formElementErrors($form->get('steps')); ?>
+  </div>
+  <div class="label-input">
+        <?php echo $this->formLabel($form->get('stepsViews')); ?>
+        <?php echo $this->formInput($form->get('stepsViews')); ?>
+        <?php echo $this->formElementErrors($form->get('stepsViews')); ?>
+  </div>
 	<div class="form-group file">
 	    <?php echo $this->formLabel($form->get('uploadMainImage')); ?>
 	    <?php echo $this->formFile($form->get('uploadMainImage')); ?>

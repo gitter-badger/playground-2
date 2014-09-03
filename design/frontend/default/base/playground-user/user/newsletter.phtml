@@ -4,7 +4,7 @@
 	<?php
     $form = $this->form;
     $form->prepare();
-    $form->setAttribute('action', $this->url('frontend/zfcuser/newsletter', array('channel' => $this->channel)));
+    $form->setAttribute('action', $this->frontendUrl('zfcuser/newsletter', array('channel' => $this->channel)));
     $form->setAttribute('method', 'post');
     ?>
     <h1>

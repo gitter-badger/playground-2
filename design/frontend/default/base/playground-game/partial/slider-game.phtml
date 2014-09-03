@@ -12,7 +12,7 @@
     <div class="carousel-caption">
         <div class="wrapper-carousel">
         	<h1 class="title-promo">
-	            <a href="<?php echo $this->url('frontend/' . $game->getClassType(), array('id' => $game->getIdentifier(), 'channel' => $this->channel)) ; ?>">
+	            <a href="<?php echo $this->frontendUrl('' . $game->getClassType(), array('id' => $game->getIdentifier(), 'channel' => $this->channel)) ; ?>">
 	                <?php echo $game->getTitle(); ?>
 	            </a>
 	        </h1>
@@ -39,7 +39,7 @@
         	<?php if($game->isStarted()):?>
 	            <div class="button-wrap">
 	                <div class="btn btn-orange">
-	                    <a href="<?php echo $this->url('frontend/' . $game->getClassType(), array('id' => $game->getIdentifier(), 'channel' => $this->channel)) ; ?>" class="arrow-right-big">
+	                    <a href="<?php echo $this->frontendUrl('' . $game->getClassType(), array('id' => $game->getIdentifier(), 'channel' => $this->channel)) ; ?>" class="arrow-right-big">
 	                       <?php echo $this->translate('Play'); ?>
 	                    </a>
 	                </div>
@@ -47,7 +47,7 @@
 	        <?php elseif($game->isOpen() && !$game->isFinished() ):?>
 	            <div class="button-wrap">
 	                <div class="btn btn-orange">
-	                    <a href="<?php echo $this->url('frontend/' . $game->getClassType(), array('id' => $game->getIdentifier(), 'channel' => $this->channel)) ; ?>" class="arrow-right-big">
+	                    <a href="<?php echo $this->frontendUrl('' . $game->getClassType(), array('id' => $game->getIdentifier(), 'channel' => $this->channel)) ; ?>" class="arrow-right-big">
 	                    	<?php echo $this->translate('Soon'); ?>
 	                    </a>
 	                </div>

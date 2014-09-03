@@ -12,7 +12,7 @@
 <!-- BLOCK GAME START -->
 <div class="block-game <?php if($this->game->isFinished()):?>over<?php else:?>start<?php endif;?> <?php if ($this->basePath($this->game->getMainImage()) == "") echo "no-image"; ?>">
 	<div class="img-content">
-		<a href="<?php echo $this->url('frontend/' . $this->game->getClassType(), array('id' =>$this->game->getIdentifier(), 'channel' => $this->layout()->channel)); ?>">
+		<a href="<?php echo $this->url('frontend/' . $this->game->getClassType(), array('id' =>$this->game->getIdentifier(), 'channel' => $this->channel)); ?>">
             <?php if ($this->basePath($this->game->getMainImage()) != "") : ?>
                 <img class="rounded" src="<?php echo $this->basePath($this->game->getMainImage()); ?>" alt="<?php echo $this->game->getTitle()?>" />
 			<?php endif;?>
@@ -32,7 +32,7 @@
 			<div class="col-md-12">
 		        <div class="wrapper-game">
 		        	<h2 class="col-md-10">
-						<a href="<?php echo $this->url('frontend/' . $this->game->getClassType(), array('id' =>$this->game->getIdentifier(), 'channel' => $this->layout()->channel)); ?>">
+						<a href="<?php echo $this->url('frontend/' . $this->game->getClassType(), array('id' =>$this->game->getIdentifier(), 'channel' => $this->channel)); ?>">
 							<?php echo $this->game->getTitle()?>
 						</a>
 					</h2>
@@ -59,7 +59,7 @@
 				                array(
 				                    'color' => 'grey',
 				                    'game'=>$this->game,
-				                    '$this->layout()->channel' => $this->layout()->channel,
+				                    '$this->layout()->channel' => $this->channel,
 				                    'url'=>$this->url(
 				                        'frontend/' . $game->getClassType(), array('id' => $this->game->getIdentifier()),
 				                        array(

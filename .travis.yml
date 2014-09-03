@@ -1,5 +1,6 @@
 language: php
 php:
+    - "5.3"
     - "5.4"
     - "5.5"
 before_script: 
@@ -15,6 +16,9 @@ script:
     - php vendor/bin/phpunit -c vendor/playground/flow
     - php vendor/bin/phpunit -c vendor/playground/partnership
     - php vendor/bin/phpunit -c vendor/playground/reward
+    - php vendor/bin/phpunit -c vendor/playground/game
+    - php vendor/bin/phpunit -c vendor/playground/stats
+    - php vendor/bin/phpunit -c vendor/playground/translate
 after_script:
     - php vendor/bin/coveralls
 notifications:

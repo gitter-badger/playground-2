@@ -16,7 +16,7 @@
         <module>
             <name>DESIGN</name>
             <path>vendor/playground/design</path>
-            <limit>34</limit>
+            <limit>30</limit>
             <mandatory>true</mandatory>
         </module>
         <module>
@@ -40,7 +40,7 @@
         <module>
             <name>GAME</name>
             <path>vendor/playground/game</path>
-            <limit>8</limit>
+            <limit>15</limit>
             <mandatory>true</mandatory>
         </module>
         <module>
@@ -60,12 +60,6 @@
             <path>vendor/playground/user</path>
             <limit>13</limit>
             <mandatory>true</mandatory>
-        </module>
-        <module>
-            <name>APPLICATION</name>
-            <path>module/Application</path>
-            <limit>0</limit>
-            <mandatory>false</mandatory>
         </module>
     </modules>
 </project>

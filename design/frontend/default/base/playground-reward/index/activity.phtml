@@ -11,9 +11,9 @@
 				<div class="span5">
 					<select name="filter-activity" id="filter-activity" class="select">
 						<option value=""><?php echo $this->translate('Select'); ?></option>
-						<option value="<?php echo $this->url('frontend/activity', array('channel' => $this->channel)) ?>"><?php echo $this->translate('Overall picture'); ?></option>
+						<option value="<?php echo $this->frontendUrl('activity', array('channel' => $this->channel)) ?>"><?php echo $this->translate('Overall picture'); ?></option>
 						<?php foreach ($filters  as $filter) : ?>
-							<option value="<?php echo $this->url('frontend/activity', array('channel' => $this->channel)).'/'.$filter->getCode()?>"><?php echo $this->translate($filter->getLabel()); ?></option>
+							<option value="<?php echo $this->frontendUrl('activity', array('channel' => $this->channel)).'/'.$filter->getCode()?>"><?php echo $this->translate($filter->getLabel()); ?></option>
 						<?php endforeach; ?>
 					</select>
 				</div>
@@ -56,6 +56,6 @@
 	<?php  $i++; endforeach;?>
 </div>
 <?php if($i < $this->total): ?>
-	<div id="more-activity" class="row-fluid more"><a href="<?php echo $this->url('frontend/activity', array('channel' => $this->channel)). '/' . $this->filter ;?>" data-count="2" data-total="<?php echo $total; ?>">+ <?php echo $this->translate('More news'); ?></a></div>
+	<div id="more-activity" class="row-fluid more"><a href="<?php echo $this->frontendUrl('activity', array('channel' => $this->channel)). '/' . $this->filter ;?>" data-count="2" data-total="<?php echo $total; ?>">+ <?php echo $this->translate('More news'); ?></a></div>
 <?php endif; ?>
 <!-- END USER ACTIVITY -->

@@ -1,28 +1,39 @@
 <?php
 
-$dbParams = array(
-    'database'  => 'playground',
-    'username'  => 'root',
-    'password'  => 'root',
-    'hostname'  => 'localhost',
-    'port'      => '3306',
-    'charset'   => 'utf8',
-    'driverOptions' => array(
-        1002 => 'SET NAMES utf8',
-    ),
-);
-
 return array(
+
+	'doctrine' => array(
+        'connection' => array(
+            'orm_default' => array(
+                'params' => array(
+                    'host'          => 'localhost',
+                    'user'          => 'root',
+                    'password'      => 'root',
+                    'dbname'        => 'playground',
+                )
+            )
+        )
+    ),
+    
     'design' => array(
         'admin' => array(
             'package' => 'default',
-            'theme' => 'base',
+            'theme' => 'playground',
         ),
         'frontend' => array(
             'package' => 'default',
-            'theme' => 'base',
+            'theme' => 'starter',
         ),
     ),
+    
+    // If you want some games attached to a specific hostname
+    'custom_games' => array(
+        'slug-of-the-game' => array(
+            'url' => 'www.hostname.com',
+            'classType' => 'treasurehunt'
+        )
+    ),
+    
     // Licence keys and api keys
     // The reason why having a Facebook subdomain is better is for separating sessions between plateform and facebook.
     // This channel stuff gives the opportunity to know on which channel we are.

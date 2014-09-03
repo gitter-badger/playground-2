@@ -175,7 +175,7 @@ $(function(){
     checkPointsCoordonnees('input', 'lastname');
     checkPointsCoordonnees('input', 'firstname');
     checkPointsCoordonnees('input', 'address');
-    checkPointsCoordonnees('input', 'postal_code');
+    checkPointsCoordonnees('input', 'postalCode');
     checkPointsCoordonnees('input', 'city');
     checkPointsCoordonnees('input', 'telephone');
     checkPointsCoordonnees('select', 'birth_year');
@@ -275,7 +275,7 @@ $(function(){
     checkLiveFormError('input', 'password', 'Veuillez renseigner un mot de passe.', 'btn-create-account');
     checkLiveFormError('password', 'passwordVerify', 'Veuillez confirmez votre mot de passe.', 'btn-create-account', 'password');
     checkLiveFormError('select', 'birth_year', 'Veuillez renseigner votre année de naissance.', 'btn-create-account');
-    checkLiveFormError('input', 'postal_code', 'Veuillez renseigner votre code postal.', 'btn-create-account');
+    checkLiveFormError('input', 'postalCode', 'Veuillez renseigner votre code postal.', 'btn-create-account');
 	*/
     
 });

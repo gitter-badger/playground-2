@@ -2,7 +2,7 @@
 <?php
 $form = $this->loginForm;
 $form->prepare();
-$form->setAttribute('action', $this->url('frontend/zfcuser/ajaxlogin', array('channel' => $this->channel)));
+$form->setAttribute('action', $this->frontendUrl('zfcuser/ajaxlogin', array('channel' => $this->channel)));
 $form->setAttribute('id', 'register-login');
 $form->setAttribute('method', 'post'); ?>
 <?php echo $this->form()->openTag($form); ?>
@@ -18,7 +18,7 @@ $form->setAttribute('method', 'post'); ?>
             <?php echo $this->formButton($form->get('submit')->setAttributes(array('class' => 'btn btn-default'))) ?>
         </div>
     </div>
-        <a href="<?php echo $this->url('frontend/zfcuser/forgotpassword', array('channel' => $this->channel)) ?>">
+        <a href="<?php echo $this->frontendUrl('zfcuser/forgotpassword', array('channel' => $this->channel)) ?>">
             <?php echo $this->translate('Forgot your password?');?>
         </a>
     <?php if ($this->redirect): ?>

@@ -8,13 +8,17 @@ jQuery(document).ready(function()
     
     if(jQuery('.datepicker').size() > 0) {
         $('.datepicker').datepicker({
-            dateFormat : 'dd/mm/yy'
+            format : 'dd/mm/yyyy',
+            orientation: "auto",
+            todayHighlight: true
         });
     }
     
     if(jQuery('.date').size() > 0) {
         $('.date').datepicker({
-            dateFormat : 'dd/mm/yy'
+            format : 'dd/mm/yyyy',
+            orientation: "auto",
+            todayHighlight: true
         });
     }
     

@@ -3,7 +3,7 @@ Missions
 <?php if($mission['mission']->getHidden() == 1) :?>
      <?php echo $this->partial('playground-game/partial/game.phtml', array('game' => $firstGame, 'channel' => $this->channel)) ?>
 <?php else : ?>
-<?php $urlFirstGame = $this->url('frontend/' . $firstGame->getClassType(), array('id' => $firstGame->getIdentifier(), 'channel' => $this->channel)); ?>
+<?php $urlFirstGame = $this->frontendUrl('' . $firstGame->getClassType(), array('id' => $firstGame->getIdentifier(), 'channel' => $this->channel)); ?>
 <div class="block-game start <?php if ($this->basePath($mission['mission']->getImage()) == "") echo "no-image"; ?>">
     <div class="img-content">
         <a href="<?php echo $urlFirstGame; ?>">

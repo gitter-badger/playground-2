@@ -74,7 +74,7 @@
 						<?php echo $this->formElementErrors($formEmail->get('newIdentityVerify')) ?>
 					</div>
 				</div>
-	
+
 				<div class="row">
 					<div class="col-md-4">
 						<p>
@@ -121,7 +121,7 @@
 						<?php echo $this->formElementErrors($form->get('credential')) ?>
 					</div>
 				</div>
-	
+
 				<div class="row">
 					<div class="col-md-4">
 						<p>
@@ -137,7 +137,7 @@
 						<?php echo $this->formElementErrors($form->get('newCredential')) ?>
 					</div>
 				</div>
-	
+
 				<div class="row">
 					<div class="col-md-4">
 						<p>
@@ -156,20 +156,20 @@
 	            <div class="clearfix"></div>
 				<?php echo $this->form()->closeTag() ?>
 			</div>
-	
+
 		</div>
-	
+
 		<!-- update adresse -->
 		<!-- start form change adresse -->
-	
+
 		<?php
 	    $formInfo = $this->changeInfoForm;
-	
+
 	    $formInfo->prepare();
 	    $formInfo->setAttribute('action', $this->url('frontend/zfcuser/profile', array('channel' => $this->channel)));
 	    $formInfo->setAttribute('method', 'post');
 		$formInfo->setAttribute('class', 'validate');
-	
+
 	    ?>
 	    <?php echo $this->form()->openTag($formInfo) ?>
 	    <?php echo $this->formHidden($formInfo->get('email')); ?>
@@ -190,11 +190,11 @@
 						<?php echo $this->formInput($formInfo->get('username')->setAttributes(array('class' => 'form-control'))); ?>
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-md-4">
 						<p>
-						    <?php echo $formInfo->get('avatar')->getLabel(); ?> : 
+						    <?php echo $formInfo->get('avatar')->getLabel(); ?> :
 						</p>
 					</div>
 					<div class="col-md-6" id="avatarfile" data-profilfile="Votre photo de profil">
@@ -207,7 +207,7 @@
 						</p>
 					</div>
 				</div>
-	
+
 				<div class="row civility">
 					<div class="col-md-4">
 					    <p>
@@ -219,7 +219,7 @@
 					    <?php echo $this->formRadio($formInfo->get('title')) . $this->formElementErrors($formInfo->get('title')) ?>
 					</div>
 				</div>
-	
+
 				<div class="row">
 					<div class="col-md-4">
 					    <p>
@@ -235,7 +235,7 @@
 						<p class="orange-points">+ 25 pts</p>
 					</div>
 				</div>
-	
+
 				<div class="row">
 					<div class="col-md-4">
 					    <p>
@@ -253,7 +253,7 @@
 						</p>
 					</div>
 				</div>
-	
+
 				<div class="row">
 					<div class="col-md-4">
 					    <p>
@@ -284,13 +284,13 @@
 				<div class="row">
 					<div class="col-md-4 zipcode">
 						<p>
-						    <?php echo $formInfo->get('postal_code')->getLabel(); ?>
+						    <?php echo $formInfo->get('postalCode')->getLabel(); ?>
 						    <span class="red">*</span> :
 					    </p>
 					</div>
 					<div class="col-md-6">
-						<?php echo $this->formInput($formInfo->get('postal_code')->setAttributes(array('class' => 'form-control'))) ?>
-						<?php echo $this->formElementErrors($formInfo->get('postal_code')) ?>
+						<?php echo $this->formInput($formInfo->get('postalCode')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formElementErrors($formInfo->get('postalCode')) ?>
 					</div>
 					<div class="col-md-2">
 						<p class="orange-points">
@@ -298,7 +298,7 @@
 						</p>
 					</div>
 				</div>
-	
+
 				<div class="row">
 					<div class="col-md-4">
 						<p>
@@ -313,7 +313,7 @@
 						<p class="orange-points">+ 75 pts</p>
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-md-4">
 						<p>
@@ -330,7 +330,7 @@
 						</p>
 					</div>
 				</div>
-	
+
 				<div class="row">
 					<div class="col-md-4">
 						<p>
@@ -372,7 +372,7 @@
     $formPrize = $this->prizeCategoryForm;
     $formPrize->setAttribute('action', $this->url('frontend/zfcuser/profile_prizes', array('channel' => $this->channel)));
     $formPrize->setAttribute('method', 'post');
-    
+
     if(($formPrize->get('prizeCategory') instanceof Zend\Form\Element\MultiCheckbox )) :
         echo $this->form()->openTag($formPrize);
     ?>
@@ -412,7 +412,7 @@
     		    <?php echo $this->translate('Reactivate my account'); ?>
     		</p>
     		<p>
-    		    <?php echo $this->translate('To reactivate my account'); ?> : 
+    		    <?php echo $this->translate('To reactivate my account'); ?> :
     		</p>
     		<p>
     			<?php echo $this->translate('Reactivate my account instuctions'); ?>
@@ -422,7 +422,7 @@
     		    <?php echo $this->translate('Delete my account'); ?>
     		</h3>
             <p class="desc-form">
-    		    <?php echo $this->translate('To delete my account'); ?> : 
+    		    <?php echo $this->translate('To delete my account'); ?> :
     		</p>
     		<p>
     			<?php echo $this->translate('Delete my account instructions'); ?>

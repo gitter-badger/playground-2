@@ -2,7 +2,7 @@ $(function(){
 
 	/**************************** Homepage */
 	
-	var APP_ID =  $('meta[property="fb:app"]').attr('content');
+	var APP_ID =  $('meta[name="fb:app"]').attr('content');
 	var BIT_CLIENT = $('meta[property="bt:client"]').attr('content');
 	var BIT_USER = $('meta[property="bt:user"]').attr('content');
 	var BIT_KEY = $('meta[property="bt:key"]').attr('content');
@@ -13,6 +13,7 @@ $(function(){
 	var dataRoute 		= $('#datas-result').attr('data-route');
 	var dataSecretKey 	= $('#datas-result').attr('data-secretkey');
 	var dataFbMsg 		= $('#datas-result').attr('data-fbmsg');
+	var dataFbTitle 		= $('#datas-result').attr('data-fbtitle');
 	var dataTwMsg 		= $('#datas-result').attr('data-twmsg');
 	var imgFb 			= $('meta[property="og:image"]').attr('content');
 	var dataFbRequest 	= $('#datas-result').attr('data-fbrequest');
@@ -90,7 +91,7 @@ $(function(){
 			method: 'feed',
 			message: "",
 			display: 'iframe',
-			name: "Plateforme Playground",
+			name: dataFbTitle,
 			caption: dataFbMsg,
 			description: dataUrl,
 			picture: imgFb,

@@ -25,7 +25,7 @@ $form->setAttribute('class', 'validate');
 				<?php echo $this->formInput($form->get('lastname'), array('class' => 'form-control')) ?>
 				<?php echo $this->formElementErrors($form->get('lastname')); ?>
 			</div>
-		</div>	
+		</div>
 		<div class="form-group row col-md-12">
 			<label class="block-left col-md-4">
 				<?php echo $form->get('firstname')->getLabel(); ?>
@@ -67,12 +67,12 @@ $form->setAttribute('class', 'validate');
 		</div>
 		<div id="cp" class="form-group row col-md-12">
 			<label class="block-left col-md-4">
-				<?php echo $form->get('postal_code')->getLabel(); ?>
+				<?php echo $form->get('postalCode')->getLabel(); ?>
 				<span class="red">*</span> :
 			</label>
 			<div class="block-right col-md-7">
-				<?php echo $this->formInput($form->get('postal_code')) ?>
-				<?php echo $this->formElementErrors($form->get('postal_code')) ?>
+				<?php echo $this->formInput($form->get('postalCode')) ?>
+				<?php echo $this->formElementErrors($form->get('postalCode')) ?>
 			</div>
 		</div>
 		<div id="country" class="form-group row col-md-12">

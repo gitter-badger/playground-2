@@ -45,26 +45,26 @@
 				    <?php echo $this->translate('Use Facebook connect')?>
 				</p class="col-md-8">
 				<p>
-				    <a href="<?php echo $this->url('frontend/zfcuser/register',array('socialnetwork' => 'facebook', 'channel' => $this->channel)) . ($this->redirect ? '?redirect='.$this->redirect : '');?>">
+				    <a href="<?php echo $this->frontendUrl('zfcuser/register',array('socialnetwork' => 'facebook', 'channel' => $this->channel)) . ($this->redirect ? '?redirect='.$this->redirect : '');?>">
 			           <img src="<?php echo $this->frontendAssetPath('images/common/fb-connect.png') ?>" alt="Facebook Connect" />
 			        </a>
 				</p>
 			</div>
 			<!-- start form -->
 	        <?php echo $this->form()->openTag($form) ?>
-				<div class="row">
-					<div class="block-left yourtitle col-md-4"><?php echo $form->get('title')->getLabel(); ?> <span>*</span> :</div>
+				<!--div class="row">
+					<div class="block-left yourtitle col-md-4"><?php //echo $form->get('title')->getLabel(); ?> <span>*</span> :</div>
 					<div class="block-right civility col-md-4">
-						<?php echo $this->formRadio($form->get('title')) . $this->formElementErrors($form->get('title')) ?>
+						<?php //echo $this->formRadio($form->get('title')) . $this->formElementErrors($form->get('title')) ?>
 					</div>
-				</div>
+				</div-->
 				<div class="row">
 					<div class="block-left col-md-4">
 					    <?php echo $form->get('lastname')->getLabel(); ?> 
 					    <span>*</span> :
 					</div>
 					<div class="block-right col-md-4">
-						<?php echo $this->formInput($form->get('lastname')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formInput($form->get('lastname')) ?>
 						<?php echo $this->formElementErrors($form->get('lastname')) ?>
 					</div>
 				</div>
@@ -74,7 +74,7 @@
 					    <span>*</span> :
 					</div>
 					<div class="block-right col-md-4">
-						<?php echo $this->formInput($form->get('firstname')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formInput($form->get('firstname')) ?>
 						<?php echo $this->formElementErrors($form->get('firstname')) ?>
 					</div>
 				</div>
@@ -84,7 +84,7 @@
 					    <span>*</span> :
 				    </div>
 					<div class="block-right col-md-4">
-					    <?php echo $this->formInput($form->get('email')->setAttributes(array('class' => 'form-control'))) ?>
+					    <?php echo $this->formInput($form->get('email')) ?>
 					    <?php echo $this->formElementErrors($form->get('email')) ?>
 					</div>
 				</div>
@@ -99,7 +99,7 @@
                         </span>
 					</div>
 					<div class="block-right col-md-4">
-						<?php echo $this->formInput($form->get('password')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formInput($form->get('password')) ?>
 						<?php echo $this->formElementErrors($form->get('password')) ?>
 					</div>
 				</div>
@@ -109,28 +109,11 @@
 					    <span>*</span> :
 					</div>
 					<div class="block-right col-md-4">
-						<?php echo $this->formInput($form->get('passwordVerify')->setAttributes(array('class' => 'form-control'))) ?>
+						<?php echo $this->formInput($form->get('passwordVerify')) ?>
 						<?php echo $this->formElementErrors($form->get('passwordVerify')) ?>
 					</div>
 				</div>
 				<?php endif;?>
-				<div class="row">
-					<div class="block-left col-md-4"><?php echo $form->get('dob')->getLabel(); ?><span>*</span> :</div>
-					<div class="block-right col-md-4 register-select mobile">
-						<?php echo $this->formDateTime($form->get('dob')->setAttributes(array('class' => 'form-control'))) ?>
-						<?php echo $this->formElementErrors($form->get('dob')) ?>
-					</div>
-				</div>
-				<div class="row">
-					<div class="block-left col-md-4">
-					    <?php echo $form->get('postal_code')->getLabel(); ?> 
-					    <span>*</span> :
-					</div>
-					<div id="wrapcp" class="block-right col-md-4">
-						<?php echo $this->formInput($form->get('postal_code')->setAttributes(array('class' => 'form-control'))) ?>
-						<?php echo $this->formElementErrors($form->get('postal_code')) ?>
-					</div>
-				</div>
                 <h2>
                     <?php echo $this->translate('Inscrivez-vous aux newsletters :')?>
                 </h2>
@@ -165,7 +148,7 @@
 				</div>
 				<div id="btn-create-account" class="row">
 					<div class="col-md-7 center">
-						<?php echo $this->formButton($form->get('submit')->setAttributes(array('class' => 'btn btn-default'))) ?>
+						<?php echo $this->formButton($form->get('submit')) ?>
 					</div>
 				</div>
 				<?php if ($this->redirect): ?>

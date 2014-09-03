@@ -12,13 +12,13 @@
     </div>
     <div class="offer">
         <?php if(!$user->getAvatar() || !$user->getAddress() || !$user->getCity() || !$user->getTelephone() || !$user->getChildren()):?>
-            <a class="btn btn-default" href="<?php if($this->channel === '') : echo $this->url('frontend/zfcuser/profile', array('channel' => $this->channel)); else : echo 'http://'.$this->channel['platform'].$this->url('frontend/zfcuser/profile', array('channel' => $this->channel)); endif; ?>">
+            <a class="btn btn-default" href="<?php if($this->channel === '') : echo $this->frontendUrl('zfcuser/profile', array('channel' => $this->channel)); else : echo 'http://'.$this->channel['platform'].$this->frontendUrl('zfcuser/profile', array('channel' => $this->channel)); endif; ?>">
                 <?php echo $this->translate('Fill my details and earn points'); ?> 
             </a>
             <br />
         <?php endif;?>
         <?php if(!$user->getOptin()):?>
-            <form class="btn btn-default" action="<?php echo $this->url('frontend/zfcuser/ajax_newsletter', array('channel' => $this->channel));?>" method="POST" id="ajax-newsletter">
+            <form class="btn btn-default" action="<?php echo $this->frontendUrl('zfcuser/ajax_newsletter', array('channel' => $this->channel));?>" method="POST" id="ajax-newsletter">
                 <input type="hidden" value="1" name="optin" />
                 <input type="submit" value="S'inscrire à la newsletter"/>
             </form>
@@ -41,7 +41,7 @@
         <?php if($game->getPartner()->getNewsletter() && !$isSubscriber):?>
             <div class="col-md-3">
                 <div class="bounce-newsform">
-                    <form action="<?php echo $this->url('frontend/partnership/ajax_newsletter', array('id' => $game->getPartner()->getId(), 'channel' => $this->channel));?>" method="POST" id="ajax-newsletter">
+                    <form action="<?php echo $this->frontendUrl('partnership/ajax_newsletter', array('id' => $game->getPartner()->getId(), 'channel' => $this->channel));?>" method="POST" id="ajax-newsletter">
                         <input type="hidden" value="1" name="optin" />
                         <input type="hidden" value="<?php echo $game->getId();?>" name="gameId" />
                         <input class="btn btn-default" type="submit" value="<?php echo $this->translate('Subscribe to newsletter'); ?>"/>

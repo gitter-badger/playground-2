@@ -41,7 +41,7 @@
 			<div class="span8">
 				<p><b><?php echo $this->translate('To take part in a play'); ?></b> <span class="orange-points">+ 100 <?php echo $this->translate('points'); ?></span></p>
 				<p><?php echo $this->translate('Take part in the plays contest to try to gain full with gifts, and in more you cumulate points!'); ?></p>
-				<p><a class="green-underline" href="<?php echo $this->url('frontend/jeuxconcours', array('channel' => $this->channel));?>">&gt; <?php echo $this->translate('See games being'); ?></a></p>
+				<p><a class="green-underline" href="<?php echo $this->url('frontend/gameslist', array('channel' => $this->channel));?>">&gt; <?php echo $this->translate('See games being'); ?></a></p>
 			</div>
 			<div class="span4">
 				<p class="big-points"><?php echo number_format($this->gamesTotal, 0, ',', ' ' ) ?> <?php echo $this->translate('points'); ?></p>

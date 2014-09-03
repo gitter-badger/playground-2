@@ -11,8 +11,8 @@ $settings = array(
     /**
      * Bitly Account : A service for shortening url :)
      */
-    'bitlyUsername' => 'o_7t2s2bjmun',
-    'bitlyApiKey'   => 'R_335290ffb3f5fc08b45d3e0e6678c3db',
+    //'bitlyUsername' => 'o_7t2s2bjmun',
+    //'bitlyApiKey'   => 'R_335290ffb3f5fc08b45d3e0e6678c3db',
     'bitlyUrl'      => 'http://api.bit.ly/v3/shorten',
 
     //Used to create the open graph stuff
@@ -87,11 +87,11 @@ $settings = array(
         'QuElFinder'=>array(
             'QuRoots'=>array(
                 'driver'        => 'LocalFileSystem',
-                'path'          =>  'C:\programmation\www\playground\public\uploads\files',
-                'URL'           =>  '/uploads/files/',
+                'path'          =>  dirname(dirname(__DIR__)).'/public/media',
+                'URL'           =>  '/media/',
                 'accessControl' => 'access'
             ),
-            'BasePath'=>'/js/lib/elfinder',
+            'BasePath'=>'/js/elfinder',
         ),
 	),
 	'googleAnalytics' => array(
@@ -116,7 +116,7 @@ $zenddevelopertools = array(
         'collectors' => array(),
     ),
     'toolbar' => array(
-        'enabled' => false,
+        'enabled' => true,
         'auto_hide' => false,
         'position' => 'bottom',
         'version_check' => true,

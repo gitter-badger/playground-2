@@ -99,13 +99,6 @@ $form->prepare();
 						->setMessageCloseString('</div>')->render($form->get(('address2'))) ?>
             </div>
             <div class="form-group">
-                <?php echo $this->formLabel($form->get('postal_code')); ?>
-                <?php echo $this->formInput($form->get(('postal_code'))->setAttribute('class', 'form-control')); ?>
-                <?php echo $this->formElementErrors()
-						->setMessageOpenFormat('<div class="alert alert-danger">')
-						->setMessageCloseString('</div>')->render($form->get(('postal_code'))) ?>
-            </div>
-            <div class="form-group">
                 <?php echo $this->formLabel($form->get('city')); ?>
                 <?php echo $this->formInput($form->get(('city'))->setAttribute('class', 'form-control')); ?>
                 <?php echo $this->formElementErrors()

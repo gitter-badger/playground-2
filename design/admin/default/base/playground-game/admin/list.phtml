@@ -7,14 +7,6 @@ if (isset($fm[0]))
 }
 ?>
 
-<ul class="liste-buttons">
-	<li class="btn-admin"><a href="<?php echo $this->url('admin/playgroundgame/create-lottery');?>"><?php echo $this->translate('Add new lottery'); ?></a></li>
-	<li class="btn-admin"><a href="<?php echo $this->url('admin/playgroundgame/create-quiz');?>"><?php echo $this->translate('Add new Quiz'); ?></a></li>
-	<li class="btn-admin"><a href="<?php echo $this->url('admin/playgroundgame/create-instantwin');?>"><?php echo $this->translate('Add new Instant Win'); ?></a></li>
-	<li class="btn-admin"><a href="<?php echo $this->url('admin/playgroundgame/create-postvote');?>"><?php echo $this->translate('Add new Post & Vote'); ?></a></li>
-	<li class="btn-admin"><a href="<?php echo $this->url('admin/playgroundgame/create-treasurehunt');?>"><?php echo $this->translate('Add new Treasure Hunt'); ?></a></li>
-</ul>
-
 <h1><?php echo $this->translate('Game list'); ?></h1>
 
 <div class="sortby-role"><?php echo $this->translate('Sort order'); ?> : <a href="<?php echo $this->url('admin/playgroundgame/list', array('type' => 'startDate', 'filter' => 'DESC')); ?>"><?php echo $this->translate('Start date'); ?></a> | <a href="<?php echo $this->url('admin/playgroundgame/list', array('type' => 'activeGames', 'filter' => 'DESC')); ?>"><?php echo $this->translate('Active'); ?></a> | <a href="<?php echo $this->url('admin/playgroundgame/list', array('type' => 'onlineGames', 'filter' => 'DESC')); ?>"><?php echo $this->translate('Online'); ?></a></div>
@@ -84,6 +76,7 @@ if (isset($fm[0]))
                 | <a href='<?php echo $optionLink ?>'><?php echo $optionLinkName ?></a><?php endif;?> 
                 | <a target="_blank" href='<?php echo $this->url('frontend/' . $game->getClassType(), array('id' => $game->getIdentifier(), 'channel' => 'preview'), array('force_canonical' => true));?>'><?php echo $this->translate('Preview'); ?></a> 
                 | <a href='<?php echo $this->url('admin/playgroundgame/set-active', array('gameId' => $game->getId())); ?>'><?php echo $activeString; ?></a>
+                | <a href='<?php echo $this->url('admin/playgroundgame/player-form', array('gameId' => $game->getId())); ?>'><?php echo $this->translate('Create the player form'); ?></a>
             </td>
             <td><?php echo $game->entry; ?></td>
             <td><?php echo count($this->partnerSubscriber($game->getPartner(), false));?></td>

@@ -4,7 +4,7 @@
 	<?php echo $this->header();?>
 	<p id="cta"><?php echo $this->translate('Play');?> !</p>
 	<div id="fb-play">
-		<p class="btn btn-success"><a href="<?php echo $this->url('frontend/instantwin',array('id' => 'tour-de-france', 'channel' => $this->channel)) ?>"><?php echo $this->translate('Play');?></a></p>
+		<p class="btn btn-success"><a href="<?php echo $this->frontendUrl('instantwin',array('id' => 'tour-de-france', 'channel' => $this->channel)) ?>"><?php echo $this->translate('Play');?></a></p>
 	</div>
 	<div id="alert-auth">
 		<div id="close-button"></div>

@@ -41,6 +41,13 @@ $form->prepare();
 						->setMessageOpenFormat('<div class="alert alert-danger">')
 						->setMessageCloseString('</div>')->render($form->get(('postDisplayMode'))) ?>
 			</div>
+			<div class="form-group">
+	            <?php echo $this->formLabel($form->get('moderationType')); ?>
+	            <?php echo $this->formSelect($form->get(('moderationType'))->setAttribute('class', 'form-control')); ?>
+	            <?php echo $this->formElementErrors()
+						->setMessageOpenFormat('<div class="alert alert-danger">')
+						->setMessageCloseString('</div>')->render($form->get(('moderationType'))) ?>
+			</div>
 			<div class="form-group checkbox">
 	            <?php echo $this->formLabel($form->get('voteAnonymous')); ?>
 	            <?php echo $this->formCheckbox($form->get('voteAnonymous')); ?>

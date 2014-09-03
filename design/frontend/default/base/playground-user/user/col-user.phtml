@@ -46,7 +46,7 @@
 				    </sup> 
 				    position
 				</span>
-				<a href="<?php echo $this->url('frontend/reward/leaderboard', array('period'=>'general','channel' => $this->channel)) ?>">
+				<a href="<?php echo $this->frontendUrl('reward/leaderboard', array('period'=>'general','channel' => $this->channel)) ?>">
 				    &gt; <?php echo $this->translate('See the overall'); ?>
 				</a>
             </div>
@@ -55,7 +55,7 @@
 			<div id="button" class="col-md-12">
 				<div class="col-md-6 manage-account">account</div>
 				<div class="col-md-6 clearfix btn-wrapper">
-	                <a class="btn btn-default" href="<?php echo $this->url('frontend/zfcuser/profile', array('channel' => $this->channel)) ?>#avatarfile">
+	                <a class="btn btn-default" href="<?php echo $this->frontendUrl('zfcuser/profile', array('channel' => $this->channel)) ?>#avatarfile">
 	                    <?php echo $this->translate('Change your profile picture'); ?>
 	                </a>
 	            </div>
@@ -63,36 +63,36 @@
 			<ul id="manage" class="col-md-12">
 				<li>
 					<!-- <img src="<?php echo $this->frontendAssetPath('images/user/icon-money-black.png') ?>" alt="" /> -->
-					<a href="<?php echo $this->url('frontend/badges', array('channel' => $this->channel)) ?>">
+					<a href="<?php echo $this->frontendUrl('badges', array('channel' => $this->channel)) ?>">
 					    <?php echo $this->translate('Badges and points'); ?>
 					</a>
 				</li>
 				<li>
 					<!-- <img src="<?php echo $this->frontendAssetPath('images/user/icon-calendar-black.png') ?>" alt="" /> -->
-					<a href="<?php echo $this->url('frontend/activity', array('channel' => $this->channel)) ?>">
+					<a href="<?php echo $this->frontendUrl('activity', array('channel' => $this->channel)) ?>">
 					    <?php echo $this->translate('My activity'); ?>
 					</a>
 				</li>
 				<li>
 					<!-- <img src="<?php echo $this->frontendAssetPath('images/user/icon-cog-black.png') ?>" alt="" /> -->
-					<a href="<?php echo $this->url('frontend/zfcuser/profile', array('channel' => $this->channel)) ?>">
+					<a href="<?php echo $this->frontendUrl('zfcuser/profile', array('channel' => $this->channel)) ?>">
 					    <?php echo $this->translate('Change my informations'); ?>
 					</a>
 				</li>
 				<li>
 					<!-- <img class="icon-news" src="<?php echo $this->frontendAssetPath('images/header/icon-news.png') ?>" alt="" /> -->
-					<a href="<?php echo $this->url('frontend/zfcuser/newsletter', array('channel' => $this->channel)) ?>">
+					<a href="<?php echo $this->frontendUrl('zfcuser/newsletter', array('channel' => $this->channel)) ?>">
 					    <?php echo $this->translate('Manage my newslettes'); ?>
 					</a>
 				</li>
 				<li>
 					<!-- <img src="<?php echo $this->frontendAssetPath('images/user/icon-users-black.png') ?>" alt="" /> -->
-					<a href="<?php echo $this->url('frontend/sponsorfriends', array('channel' => $this->channel)) ?>">
+					<a href="<?php echo $this->frontendUrl('sponsorfriends', array('channel' => $this->channel)) ?>">
 					    <?php echo $this->translate('Sponsor my friends'); ?>
 					</a>
 				</li>
 				<li>
-					<a class="btn btn-default" href="<?php echo $this->url('frontend/zfcuser/logout', array('channel' => $this->channel)) ?>" class="btn">
+					<a class="btn btn-default" href="<?php echo $this->frontendUrl('zfcuser/logout', array('channel' => $this->channel)) ?>" class="btn">
 					    <?php echo $this->translate('Logout'); ?>
 					</a>
 				</li>
@@ -105,19 +105,19 @@
 		    	<ul class="links-list">
 					<li>
 						<!-- <img src="<?php echo $this->frontendAssetPath('images/user/icon-money-black.png') ?>" alt="" /> -->
-						<a href="<?php echo $this->url('frontend/cms', array('id' => 'comment-ca-marche', 'channel' => $this->channel)); ?>">
+						<a href="<?php echo $this->frontendUrl('cms', array('id' => 'comment-ca-marche', 'channel' => $this->channel)); ?>">
 						    <?php echo $this->translate('Badges and points'); ?>
 						</a>
 					</li>
 					<li>
 						<!--<img src="<?php echo $this->frontendAssetPath('images/user/icon-calendar-black.png') ?>" alt="" /> -->
-						<a href="<?php echo $this->url('frontend/faq', array('channel' => $this->channel)) ?>">
+						<a href="<?php echo $this->frontendUrl('faq', array('channel' => $this->channel)) ?>">
 						    <?php echo $this->translate('F.A.Q'); ?>
 						</a>
 					</li>
 					<li>
 						<!--<img src="<?php echo $this->frontendAssetPath('images/user/icon-contact-black.png') ?>" alt="" /> -->
-						<a href="<?php echo $this->url('frontend/contact', array('channel' => $this->channel)) ?>">
+						<a href="<?php echo $this->frontendUrl('contact', array('channel' => $this->channel)) ?>">
 						    <?php echo $this->translate('Contact us'); ?>
 						</a>
 					</li>
@@ -132,13 +132,13 @@
 		    	<ul class="links-list">
 					<li>
 						<img src="<?php echo $this->frontendAssetPath('images/user/icon-money-black.png') ?>" alt="" />
-						<a href="<?php echo $this->url('frontend/cms', array('id' => 'comment-ca-marche', 'channel' => $this->channel)); ?>">
+						<a href="<?php echo $this->frontendUrl('cms', array('id' => 'comment-ca-marche', 'channel' => $this->channel)); ?>">
 						    <?php echo $this->translate('Badges and points'); ?>
 						</a>
 					</li>
 					<li>
 						<img src="<?php echo $this->frontendAssetPath('images/user/icon-calendar-black.png') ?>" alt="" />
-						<a href="<?php echo $this->url('frontend/faq', array('channel' => $this->channel)) ?>">
+						<a href="<?php echo $this->frontendUrl('faq', array('channel' => $this->channel)) ?>">
 						    <?php echo $this->translate('F.A.Q'); ?>
 						</a>
 					</li>
@@ -148,7 +148,7 @@
 					</li> -->
 					<li>
 						<img src="<?php echo $this->frontendAssetPath('images/user/icon-contact-black.png') ?>" alt="" />
-						<a href="<?php echo $this->url('frontend/contact', array('channel' => $this->channel)) ?>">
+						<a href="<?php echo $this->frontendUrl('contact', array('channel' => $this->channel)) ?>">
 						    <?php echo $this->translate('Contact us'); ?>
 						</a>
 					</li>
@@ -158,7 +158,7 @@
 		<div id="deco" class="sb-block">
 			<ul>
 				<li>
-					<a class="btn btn-default" href="<?php echo $this->url('frontend/zfcuser/register', array('channel' => $this->channel)) . ($this->redirect ? '?redirect='.$this->redirect : '') ?>">Se connecter / Créer un compte</a>
+					<a class="btn btn-default" href="<?php echo $this->frontendUrl('zfcuser/register', array('channel' => $this->channel)) . ($this->redirect ? '?redirect='.$this->redirect : '') ?>">Se connecter / Créer un compte</a>
 				</li>
 			</ul>
 		</div>
