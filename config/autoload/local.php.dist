@@ -54,23 +54,6 @@ return array(
     'rss' => array(
         'url' => 'http://www.metrofrance.com/rss.xml?c=1157379272-9',
     ),
-    'doctrine' => array(
-        'connection' => array(
-            // default connection name
-            'orm_default' => array(
-                'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
-                'params' => array(
-                    'host'     => $dbParams['hostname'],
-                    'port'     => $dbParams['port'],
-                    'user'     => $dbParams['username'],
-                    'password' => $dbParams['password'],
-                    'dbname'   => $dbParams['database'],
-                    'charset'  => $dbParams['charset'],
-                    'driverOptions' => $dbParams['driverOptions'],
-                )
-            )
-        ),
-    ),
     'ocra_cached_view_resolver' => array(
         // configuration to be passed to `Zend\Cache\StorageFactory#factory()`
         'cache' => array(

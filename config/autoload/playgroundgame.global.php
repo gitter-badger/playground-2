@@ -15,7 +15,8 @@ $playgroundgame = array(
          * Sender email address
          */
         'emailFromAddress' => 'no-reply@to.me',
-        'participationSubjectLine' => '',
+        'participationSubjectLine' => 'Jeu concours',
+        'shareSubjectLine' => 'Venez découvrir le jeu concours'
 );
 
 /**
