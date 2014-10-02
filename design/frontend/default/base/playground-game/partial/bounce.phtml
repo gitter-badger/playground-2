@@ -12,7 +12,7 @@
     </div>
     <div class="offer">
         <?php if(!$user->getAvatar() || !$user->getAddress() || !$user->getCity() || !$user->getTelephone() || !$user->getChildren()):?>
-            <a class="btn btn-default" href="<?php if($this->channel === '') : echo $this->frontendUrl('zfcuser/profile', array('channel' => $this->channel)); else : echo 'http://'.$this->channel['platform'].$this->frontendUrl('zfcuser/profile', array('channel' => $this->channel)); endif; ?>">
+            <a class="btn btn-default" href="<?php echo $this->frontendUrl('zfcuser/profile', array('channel' => $this->channel)); ?>">
                 <?php echo $this->translate('Fill my details and earn points'); ?> 
             </a>
             <br />

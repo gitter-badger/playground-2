@@ -10,7 +10,7 @@ $form->prepare();
 
 <?php echo $this->form()->openTag($form) ?>
 <?php $form->get('submit')->setLabel($this->translate('Validate')); ?><?php echo $this->formButton($form->get('submit')) ?>
-
+<div id="dz-root"></div>
 <div id="content" class="tabbable tabs-left">
     <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
         <li class="active"><a href="#general" data-toggle="tab"><?php echo $this->translate('General'); ?></a></li>
@@ -111,8 +111,27 @@ $form->prepare();
             </div>
             <?php if($form->get('image')->getValue() != ''):?>
             	<img src="<?php echo $this->basePath($form->get('image')->getValue()); ?>" />
+            	<div class="controls">
+            	<input id="delete_image" name="delete_image" type="button" value="<?php echo $this->translate('Supprimer l\'image'); ?>">
+                    <?php echo $this->formHidden($form->get('delete_image')); ?>
+                </div>
             <?php endif;?>
             
+            <div class="control-group">
+                <label class="control-label" for="search_sound"><?php echo $this->translate('Audio'); ?></label>
+                <div class="controls">
+                    <input id="search_sound" name="search_sound" type="text" placeholder="Search music on Deezer">
+                </div>
+            </div>
+            <?php if($form->get('audio')->getValue() != ''):?>
+                <div class="controls">
+                    <input id="delete_audio" name="delete_audio_button" type="button" value="<?php echo $this->translate('Supprimer la musique'); ?>">
+                </div>
+            <?php endif; ?>
+
+             <?php echo $this->formHidden($form->get('audio')); ?>
+             <?php echo $this->formHidden($form->get('autoplay')); ?>
+             
         </div>
         <div class="tab-pane" id="answers">
 			<ul class="liste-buttons">
@@ -130,3 +149,20 @@ $form->prepare();
     </div>
 </div>
 <?php echo $this->form()->closeTag() ?>
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#tabs').tab();
+        $('.datepicker').datepicker();
+
+        // TODO : Placer ce JS dans un fichier JS
+        $('#delete_image').on('click', function() {
+            $('.delete_image').val(true);
+            $('.image_uploaded').remove();
+        });
+	    
+	    $('#delete_audio').on('click', function() {
+	    	$('input[name=audio]').val('');
+	    	$('#audio-informations').remove();
+	    });
+    });
+</script>

@@ -16,6 +16,7 @@ if (isset($fm[0]))
     <tr>
         <?php if (!$this->game->getAnonymousAllowed()) : ?>
             <th><?php echo $this->translate('Id'); ?></th>
+            <th><?php echo $this->translate('Date'); ?></th>
             <th><?php echo $this->translate('Pseudo'); ?></th>
             <th><?php echo $this->translate('Nom'); ?></th>
             <th><?php echo $this->translate('Prenom'); ?></th>
@@ -37,6 +38,7 @@ if (isset($fm[0]))
         <tr>
             <?php if (!$this->game->getAnonymousAllowed()) : ?>
                 <td><?php echo $post->getUser()->getId(); ?></td>
+                <td><?php echo $post->getEntry()->getCreatedAt()->format('d/m/Y H:i:s'); ?></td>
                 <td><?php echo $post->getUser()->getUsername(); ?></td>
                 <td><?php echo $post->getUser()->getLastname(); ?></td>
                 <td><?php echo $post->getUser()->getFirstname(); ?></td>

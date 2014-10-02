@@ -9,7 +9,7 @@ return array(
                 # collection of assets
                 'collections' => array(
                     
-                    'head_frontend_lib' => array(
+                    'head_frontend_base_lib' => array(
                         'assets' => array(
                             'js/lib/jquery-1.9.0.min.js',
                             'js/lib/bootstrap.min.js',
@@ -24,7 +24,7 @@ return array(
                         ),
                     ),
                     
-                    'head_frontend_js' => array(
+                    'head_frontend_base_js' => array(
                         'assets' => array(
                             'loader.js'      => 'js/loader.js',
                             'popin.js'       => 'js/popin.js',
@@ -68,7 +68,7 @@ return array(
                         )
                     ),
                     
-                    'frontend_css' => array(
+                    'frontend_base_css' => array(
                         'assets' => array(
                             'css/base.css'
                         ),
@@ -82,9 +82,9 @@ return array(
         'routes' => array( 
             'frontend.*' => array(
                 '@frontend_lib_css'     => '@frontend_lib_css',
-                '@frontend_css'         => '@frontend_css',
-                '@head_frontend_lib'    => '@head_frontend_lib',
-                '@head_frontend_js'     => '@head_frontend_js',
+                '@frontend_css'         => '@frontend_base_css',
+                '@head_frontend_lib'    => '@head_frontend_base_lib',
+                '@head_frontend_js'     => '@head_frontend_base_js',
             ),
         ),
 	),

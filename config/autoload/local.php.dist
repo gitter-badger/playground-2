@@ -22,7 +22,7 @@ return array(
         ),
         'frontend' => array(
             'package' => 'default',
-            'theme' => 'starter',
+            'theme' => 'base',
         ),
     ),
     

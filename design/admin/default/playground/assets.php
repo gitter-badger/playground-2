@@ -42,26 +42,27 @@ return array(
                             'bootstrap.min.css'              => 'css/lib/bootstrap.min.css',
                             'datepicker.css'                 => 'css/lib/datepicker.css',
                             'style.css'                      => 'css/style.css',
+                            'jqueryui.css'                   => 'http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css',
                         ),
                         'options' => array(
                             'output' => 'zfcadmin/css/playground'
                         ),
                     ),
-                    
+				    
                     /**
                      * MAIN JS FILES
                      */
-                    'playground_js' => array(
+                    'head_playground_js' => array(
                         'assets' => array(
-                            'jquery-1.10.2.min.js'          => 'js/lib/jquery-1.10.2.min.js',
-                            //'jquery-1.10.2.min.map'          => 'js/lib/jquery-1.10.2.min.map',
+                            'jquery.min.js'                 => 'js/lib/jquery.min.js',
+                            'jquery_ui'                     => 'js/lib/jquery-ui.min.js',
                             'bootstrap.min.js'              => 'js/lib/bootstrap.min.js',
                             'bootstrap-datepicker.js'       => 'js/lib/bootstrap-datepicker.js',
                             'main.js'                       => 'js/main.js',
                         ),
                         'filters' => array(),
                         'options' => array(
-                            'output' => 'zfcadmin/js/script_playground'
+                            'output' => 'zfcadmin/js/head_script_playground'
                         ),
                     ),
                     
@@ -153,7 +154,7 @@ return array(
         'routes' => array(
             'admin.*' => array(
                 '@playground_css',
-                '@playground_js',
+                '@head_playground_js',
             ),
             'admin' => array(
                 '@playground_stats_css',

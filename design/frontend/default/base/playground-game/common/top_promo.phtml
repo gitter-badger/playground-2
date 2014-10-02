@@ -19,11 +19,12 @@
             <?php foreach($this->sliderItems as $item):?>
                 <?php if(! $item instanceof PlaygroundCms\Entity\Page):?>
                     <?php $this->partial()->setObjectKey('game')?>
-                    <?php echo $this->partial('playground-game/partial/slider-game.phtml', array('game' =>$item, 'channel' => $this->channel)) ?>
+                    <?php echo $this->partial('playground-game/partial/slider-game.phtml', array('game' =>$item, 'channel' => $this->channel, 'first' => $first)) ?>
                 <?php else:?>
                     <?php $this->partial()->setObjectKey('page')?>
-                    <?php echo $this->partial('playground-cms/page/partial/slider-page.phtml', array('page' =>$item, 'channel' => $this->channel)) ?>
+                    <?php echo $this->partial('playground-cms/page/partial/slider-page.phtml', array('page' =>$item, 'channel' => $this->channel, 'first' => $first)) ?>
                 <?php endif;?>
+                <?php if($first) $first = false; ?>
             <?php endforeach;?>
         </div>
         <?php if($nb > 1):?>

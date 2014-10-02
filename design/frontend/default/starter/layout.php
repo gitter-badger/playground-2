@@ -83,9 +83,6 @@ return array(
                             )
                         ),
                         'playgroundgame' => array(
-                            'children_views' => array(
-                                'col_right' => 'playground-game/quiz/col-quiz.phtml.phtml'
-                            ),
                             'actions' => array(
                                 'index' => array(
                                     'layout' => 'layout/2columns-right.phtml'

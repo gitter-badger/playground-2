@@ -35,7 +35,7 @@ jQuery(document).ready(function()
         var datatemplate = $('#answer_entry > fieldset > span').data('template');
         template.data('template', '<fieldset id="answers__index__">'+datatemplate+'</fieldset>');
         
-        $('#answer_entry button').live('click',function(){
+        $('#answer_entry button').on('click', function() {
             $(this).parent().parent().empty();
             return false;
         });
