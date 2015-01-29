@@ -1,0 +1,18 @@
+<?php if(!isset($this->folderUrl)) $this->folderUrl = ""; ?>
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgroundgame'); ?>
+<?php echo $this->partial('playground-game/partial/game-header', array('game'=>$this->game, 'channel' => $this->channel));?>
+<div class="game-<?php echo $this->game->getClassType(); ?> wrap-game result">
+    <div id="content-result" class="content-game clearfix">
+        <div id="zone_fin">
+            <div class="col-md-1"></div>
+            <div class="page col-md-12">
+                <h1 class="thanks">Merci !</h1>
+                <p class="paragraph">Votre photo sera bientôt publiée dans la</p>
+                <a class="paragraph" href="<?php echo $this->frontendUrl($this->game->getClassType() . '/list', array('id' => $this->game->getIdentifier(), 'filter' => $this->game->getPostDisplayMode(), 'channel' => $this->channel))?>">Galerie des Alfies</a>
+                <p class="paragraph">et diffusée sur le stand ALFA ROMEO du mondial de l'Automobile 2014.</p>
+            </div>
+            <?php echo $this->additional; ?>
+        </div>
+    </div>
+</div>
+<?php echo $this->partial('playground-game/partial/game-footer', array('game'=>$this->game, 'channel' => $this->channel));?>

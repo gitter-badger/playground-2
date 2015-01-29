@@ -129,7 +129,7 @@ if (isset($this->flashMessages))
 
     <div class="col-md-12 text-center">
 	 <?php if ($this->game->getOccurrenceType()=='datetime'): ?>
-	    <a class="btn btn-default btn-green next-instant-win-step" id="next-instant-win-step" href="<?php echo ($this->winner) ? '#': $this->frontendUrl(''. $this->game->getClassType() . '/'. $this->game->nextStep('play'), array('id' => $this->game->getIdentifier(), 'channel' => $this->channel));?>">
+	    <a class="btn btn-default btn-green next-instant-win-step" id="next-instant-win-step" href="<?php echo $this->frontendUrl($this->game->getClassType() . '/'. $this->game->nextStep('play'), array('id' => $this->game->getIdentifier(), 'channel' => $this->channel));?>">
 		    Continuer
 		</a>
 	<?php endif; ?>

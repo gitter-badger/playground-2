@@ -1,0 +1,242 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgroundgame'); ?>
+<div class="game-postvote list-participant wrap-game">
+	<h1 class="alfie-logo-wrap">
+	    <img class="alfie-logo" src="<?php echo $this->frontendAssetPath('alfie/images/logo-alfie.png'); ?>" alt="">
+	</h1>
+	<div id="global" class="global-relative">
+	
+    	<!-- BLOCK CONTENT -->
+    	<div class="">
+        	<div id="alfies" class="posts consultation-list-wrap<?php if(!$game->isStarted()):?> game-close<?php endif ?>">
+        		<?php foreach($this->posts as $post): ?>
+        		<?php foreach ($post['data'] as $data) { $url = $data; break; } ?>
+        		    <?php if(isset($url)):?>
+        			<div class="wrap-selfimg">
+              <?php
+                // $size = getimagesize($this->serverUrl('/' . $url));
+                // $className = ($size[0] >= $size[1]) ? 'sup-height' : 'sup-width' ;
+              ?>
+                <img class="self-img sup-width" data-id="<?php echo $post['id']?>" src="<?php echo $this->serverUrl('/' . $url);?>" alt="" />
+
+                <img class="square" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+              </div>
+        			<?php endif ?>
+                <?php endforeach; ?>
+        	</div>
+    	</div>
+    	
+    	<div id="video" >
+        <video>
+          <source src="/media/videos/video.mp4" type="video/mp4">
+        </video>
+    	</div>
+    </div>
+	
+<div class="header header-alfa">
+    <div>
+        <a href="<?php echo $this->frontendUrl($this->game->getClassType() . '/'. $this->game->nextStep('index'), array('id' => $this->game->getIdentifier(), 'channel' => $this->channel))?>" class="button playgamge">
+            <?php echo $this->translate('Participer'); ?></span>
+        </a>
+    </div>
+  <div>
+    <span class="weblink">sur alfie.fr <span>ou</span></span>
+    <img id="qr" src="<?php echo $this->frontendAssetPath('alfie/images/qr.jpg'); ?>" alt="ALPHA ROMEO" class="center-block" />
+  </div>
+            
+	<img id="logo" src="<?php echo $this->frontendAssetPath('alfie/images/common/big-logo.png'); ?>" alt="ALPHA ROMEO" class="img-responsive center-block" />
+</div>
+
+<!-- Modal -->
+<div class="modal fade modal-selfie modal-selfie-full" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  html,
+  body,
+  .game-content{
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+
+<script>
+function AlfieElements()
+{
+	this.video = $('#video'); 
+	this.alfies = $('#alfies');
+	return this;
+};
+
+var videoIsPlaying = false;
+
+AlfieElements.prototype.getAlfieById = function(id) {
+	var alfies = this.alfies.find('.self-img[data-id="'+id+'"]:eq(0)');
+	if (alfies.length) {
+	    return alfies[0];
+	}
+	return null;
+}
+
+AlfieElements.prototype.randomAlfie = function() {
+	var len = this.alfies.find('img').length;
+	rand = parseInt(Math.random()*len);
+	var alfies = this.alfies.find('.self-img:eq('+rand+')');
+	if (alfies.length) {
+	 return alfies[0];
+	}
+}
+
+function AlfieScreen() {
+	this.elements = new AlfieElements();
+	this.currentAlfie = null;
+	this.view = 'alfies';
+	this.elements.video.hide();
+	return this;
+}
+
+AlfieScreen.prototype.swapContent = function() {
+  var self = this;
+	if ('alfies' == this.view) {
+		this.hideAlfie();
+  	this.elements.video.show();
+  	this.elements.alfies.hide();
+  	this.view = 'video';
+    videoIsPlaying = true;
+    $('#video video')[0].play();
+    $('#video video').one('ended', function(e) {
+      videoIsPlaying = false;
+      self.elements.alfies.hide();
+      self.swapContent();
+      $("#alfies").height($(".consultation-list-wrap #alfies").height() + 20);
+    })
+	} else if ('video' == this.view) {
+    console.log("swapContent")
+		this.elements.video.hide();
+  	this.elements.alfies.show();
+  	this.view = 'alfies';
+	}
+
+}
+
+AlfieScreen.prototype.showRandomAlfie = function() {
+	if ('video' == this.view) {
+    return;
+	}
+	this.showAlfie(this.elements.randomAlfie());
+}
+
+AlfieScreen.prototype.showAlfie = function(alfie) {
+  var self = this;
+	if (alfie) {
+		this.hideAlfie();
+		this.currentAlfie = alfie;
+    $('.modal-selfie .modal-body').html('<img src="' + $(this.currentAlfie).attr('src') + '" />');
+    $('.modal-selfie').modal('show').css('padding-top', ($('.modal-dialog').height() * 0.5));
+
+	}
+  setTimeout(function() {
+    self.hideAlfie();
+  }, 1000*6);
+}
+
+AlfieScreen.prototype.hideAlfie = function() {
+	if (this.currentAlfie) {
+		console.log('TODO hideAlfie');
+		this.currentAlfie = null;
+    $('.modal-selfie').modal('hide');
+    $('.modal-backdrop').remove();
+	}
+}
+
+var interval = null,
+    left = 0;
+
+var animate = function() {
+  var el = $(".consultation-list-wrap #alfies"),
+      width = el.width() - window.innerWidth;
+      
+  left-= 1;
+
+  if(left < -width){
+    left = 0;
+  }
+
+  el.css(
+    'transform',
+    'translate3d('+ left + 'px, 0, 0)'
+  );
+};
+
+AlfieScreen.prototype.refresh = function() {
+	$(this.elements.alfies).load('<?php echo $this->frontendUrl($this->game->getClassType() . '/list', array('id' => $this->game->getIdentifier(), 'filter' => 'push', 'channel' => $this->channel))?> #alfies', function(arguments) {
+    var width = window.innerWidth / 4;
+
+    $(".wrap-selfimg").width(width - 5);
+    $(".consultation-list-wrap #alfies").width((width * Math.ceil($("#alfies .self-img").size() / 2)) - 20);
+    $("#alfies").height($(".consultation-list-wrap #alfies").height() + 20);
+
+    if(interval !== null){
+      clearInterval(interval);
+    }
+
+
+  $(".self-img").each(function(i, o) {
+    $(o).one("load", function() {
+      if(this.width >= this.height){
+        $(this).addClass('sup-height');
+        $(this).removeClass('sup-width');
+      }
+    }).each(function() {
+      if(this.complete) $(this).load();
+    });
+  });
+
+
+    interval = setInterval(animate, 35);
+  });
+}
+
+
+var as = new AlfieScreen();
+
+jQuery(document).ready(function() {
+
+  $('.game-content').css('max-width', '1000%');
+	// refresh timeout
+	refresh = function() {
+		setTimeout(refresh, 1000*60*5);
+		as.refresh();
+	}
+	refresh();
+
+	swapContent = function() {
+		as.swapContent();
+		// if ('alfies' == as.view) {
+			setTimeout(swapContent, 1000*79);
+		//  }
+		// TODO detecter la fin de la video et placer un swapContent() lors de l'evenement
+	}
+	swapContent();
+
+	var showRandomAlfie = function() {
+    setTimeout(showRandomAlfie, 1000*12);
+    if(videoIsPlaying) return;
+		as.showRandomAlfie();
+	}
+  setTimeout(showRandomAlfie, 1000*10);
+
+  // REMOVE
+  // as.swapContent();
+
+});
+</script>

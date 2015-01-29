@@ -81,4 +81,12 @@ if (isset($fm[0]))
     </tbody>
 </table>
 
+<ul class="liste-buttons bottom">
+	<li class="btn-admin bottom"><a href="<?php echo $this->url('admin/playgroundgame/create-lottery');?>"><?php echo $this->translate('Add new lottery'); ?></a></li>
+	<li class="btn-admin bottom"><a href="<?php echo $this->url('admin/playgroundgame/create-quiz');?>"><?php echo $this->translate('Add new Quiz'); ?></a></li>
+	<li class="btn-admin bottom"><a href="<?php echo $this->url('admin/playgroundgame/create-instantwin');?>"><?php echo $this->translate('Add new Instant Win'); ?></a></li>
+	<li class="btn-admin bottom"><a href="<?php echo $this->url('admin/playgroundgame/create-postvote');?>"><?php echo $this->translate('Add new Post & Vote'); ?></a></li>
+	<li class="btn-admin bottom"><a href="<?php echo $this->url('admin/playgroundgame/import');?>"><?php echo $this->translate('Import a game'); ?></a></li>
+</ul>
+
 <?php echo $this->paginationControl($this->games, 'Sliding', 'playground-game/admin/pagination_gamelist', array('type' => $this->type, 'filter' => $this->filter)); ?>

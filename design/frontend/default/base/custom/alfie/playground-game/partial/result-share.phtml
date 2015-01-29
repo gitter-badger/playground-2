@@ -1,0 +1,83 @@
+<?php
+use Zend\Mvc\Controller\PluginManager;
+if(isset($this->game)) :
+    $this->plugin('translate')->setTranslatorTextDomain('playgroundgame');
+    $defaultMsg = (isset($this->userTimer['timer'])) ?
+        $this->translate('I had').' '.$this->userTimer['ratio'].'% '.$this->translate('of good answers in').' '.$this->userTimer['timer'].' '.$this->translate('seconds on game').' '.$this->game->getTitle().' '.$this->translate('Come do better !').' ' :
+        $this->translate('Come play game').' : ' . $this->game->getTitle() . ' '.$this->translate('of').' Playground ';
+    $twShareMsg = ($this->game->getTwShareMessage()) ?
+    $this->game->getTwShareMessage() :
+    $defaultMsg;
+    $fbShareMsg = ($this->game->getFbShareMessage()) ?
+    $this->game->getFbShareMessage() :
+    $defaultMsg;
+    $fbRequestMsg = ($this->game->getFbRequestMessage()) ?
+    $this->game->getFbRequestMessage() :
+    $defaultMsg;
+    
+//     $manager = new PluginManager();
+    
+//     $manager->get('frontendUrl');
+    $secretKey = strtoupper(substr(sha1(uniqid('pg_', true).'####'.time()),0,15));
+    $socialLinkUrl = $this->frontendUrl('postvote/list',array('id' => $this->game->getIdentifier(), 'filter' => 'date', 'channel' => $this->channel), array('force_canonical' => true)).'?id='.$this->post->getId().'&key='.$secretKey;
+    // With core shortener helper
+//     $socialLinkUrl = $this->shortenUrl()->shortenUrl($socialLinkUrl);
+?>
+    <div
+        id="datas-result"
+        data-url="<?php echo rtrim($this->frontendUrl('' . $this->gameType, array("id" => $this->game->getIdentifier(), 'channel' => $this->channel), array('force_canonical' => true)), '/'); ?>"
+        data-secretkey="<?php echo $this->secretKey; ?>" data-fbmsg="<?php echo $fbShareMsg; ?>"
+        data-twmsg="<?php echo $twShareMsg; ?>" data-fbrequest="<?php echo $fbRequestMsg; ?>"
+        data-sociallink="<?php echo $socialLinkUrl; ?>">
+    </div>
+<?php endif; ?>
+<!-- invitations sociales -->
+<div>
+    <div class="invite-social row">
+        <h2 class="full"><?php echo $this->translate('3. Partagez votre Alfie') // TODO echo $form->title?></h2>
+    	<h1 class="social-select">
+    	    <?php echo $this->translate('Sélectionnez un réseau social pour publier votre <strong>alfie</strong>'); ?>
+    	</h1>
+        <h1 class="insta"><?php echo $this->translate('Pour finaliser votre participation publiez votre photo avec le hashtag <strong>#alfiemondial</strong>'); ?></h1>
+    	<ul class="row col-md-12 text-center social-icon">
+    		<li class="social-select">
+    		    <a id="fb-share" href="javascript:void(0)" class="link fb">
+    		        <img src="<?php echo $this->frontendAssetPath('alfie/images/facebook.jpg'); ?>" alt="" />
+                    <span>Facebook</span>
+    		    </a>
+    		</li>
+    		<li class="social-select">
+    		    <a href="https://twitter.com/intent/tweet?text=<?php echo urlencode($twShareMsg); ?>&url=<?php echo urlencode($socialLinkUrl); ?>" data-txt="<?php echo $twShareMsg; ?>" target="_blank" class="link twitter">
+    		        <img src="<?php echo $this->frontendAssetPath('alfie/images/twitter.jpg'); ?>" alt="" />
+                    <span>Twitter</span>
+    		    </a>
+    		</li>
+            <li class="social-select instagram">
+                <a class="link instagram">
+                    <img src="<?php echo $this->frontendAssetPath('alfie/images/instagram.jpg'); ?>" alt="" />
+                    <span>Instagram</span>
+                </a>
+            </li>
+            <li class="insta instagram">
+                <a href="https://twitter.com/intent/tweet?text=<?php echo urlencode($twShareMsg); ?>&url=<?php echo urlencode($socialLinkUrl); ?>" data-txt="<?php echo $twShareMsg; ?>" target="_blank" class="link instagram">
+                    <span><?php echo $this->translate('Lancer Instagram')?></span></br>
+                    <img src="<?php echo $this->frontendAssetPath('alfie/images/instagram.jpg'); ?>" alt="" />
+                </a>
+            </li>
+    	</ul>
+    </div>
+</div>
+<script>
+var GAME_NEXT_STEP_URL = '<?php echo $this->frontendUrl($this->gameType . '/' . $this->game->nextStep('share'), array('id' => $this->game->getIdentifier(), 'channel' => $this->channel), array('force_canonical' => true)) ?>';
+$('a.twitter').on('click', function() {
+	s3_log('/promo/alfie/keepmeinformed/twitter_publication/');
+});
+
+$('#fb-share').on('click', function() {
+	s3_log('/promo/alfie/keepmeinformed/facebook_publication/');
+});
+
+$('a.instagram').on('click', function() {
+    s3_log('/promo/alfie/keepmeinformed/instagram_publication/');
+});
+</script>

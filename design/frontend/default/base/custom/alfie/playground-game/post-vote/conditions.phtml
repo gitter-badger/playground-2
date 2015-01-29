@@ -1,0 +1,22 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgroundgame'); ?>
+<?php echo $this->partial('playground-game/partial/scripts', array('game'=>$this->game, 'channel' => $this->channel));?>
+<?php echo $this->partial('playground-game/partial/game-header', array('game'=>$this->game, 'channel' => $this->channel));?>
+
+<?php 
+$url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+$baseUrl = $this->frontendUrl(null, array('channel' => $this->channel), array('force_canonical' => true));
+$conditionsUrl = $this->frontendUrl(''. $this->game->getClassType() . '/conditions', array('id' => $this->game->getIdentifier(), 'channel' => $this->channel));
+if (strpos($url, $baseUrl) !== 0
+        || $url == $conditionsUrl) {
+    $url = $this->frontendUrl($this->game->getClassType(), array('id' => $this->game->getIdentifier(), 'channel' => $this->channel));
+}
+?>
+
+<a href="<?php echo $url?>" class="back"><?php echo $this->translate('retour')?></a>
+
+<div id="zone_soutien">
+		<h1 class="title"><?php echo $this->translate('Politique de confidentialité')?></h1>
+    <?php if($this->channel === 'facebook'): ?><div class="fb-target"><?php endif ?>
+		<p class="reglement"><?php echo $this->game->getConditionsBlock();?></p>
+	<?php if($this->channel === 'facebook'): ?></div><?php endif ?>
+</div>

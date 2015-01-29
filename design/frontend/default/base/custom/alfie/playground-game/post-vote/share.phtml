@@ -1,0 +1,41 @@
+<?php 
+$nextStep = $this->game->nextStep('share');
+$nextStep = $nextStep ? $nextStep : 'result';
+$url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+?>
+<?php if(!isset($this->folderUrl)) $this->folderUrl = ""; ?>
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgroundgame'); ?>
+<?php echo $this->partial('playground-game/partial/game-header', array('game'=>$this->game, 'channel' => $this->channel));?>
+
+<a href="<?php echo $url?>" class="back"><?php echo $this->translate('retour')?></a>
+<div class="game-<?php echo $this->game->getClassType(); ?> wrap-game result">
+    <!-- BLOCK CONTENT -->
+    <div id="content-result" class="content-game clearfix">
+        <div class="col-md-1"></div>
+        <div class="page col-md-12" id="zone_share">
+            <!-- SPONSOR (parrainer) -->
+            <div>
+                <?php echo $this->partial('playground-game/partial/result-share', array(
+                        'game'          => $this->game,
+                        'secretKey'     => $this->secretKey,
+                        'socialLinkUrl' => $socialLinkUrl,
+                        'form'          => $this->form,
+                        'statusMail'    => $statusMail,
+                        'gameType'      => $this->game->getClassType(),
+                        'channel'       => $this->channel,
+                        'nextGame'      => $this->nextGame,
+                        'post'          => $this->post
+                )); ?>
+            </div>
+        </div>
+    </div>
+    <?php echo $this->additional; ?>
+    <!-- END SPONSOR (parrainer) -->
+</div>
+<?php echo $this->partial('playground-game/partial/game-footer', array('game'=>$this->game, 'channel' => $this->channel));?>
+
+<!-- Sophus3 tag starts-->
+<script type="text/javascript" language="JavaScript">
+s3_page_alias="/promo/alfie/keepmeinformed/social_publication/";
+</script>
+<!-- Sophus3 tag ends-->

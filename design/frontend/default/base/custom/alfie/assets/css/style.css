@@ -1,0 +1,184 @@
+h1, strong, a, p {
+	color: #fff;
+}
+
+h1 {
+	font-family: 'helvetica-ullt';
+	font-size: 3.5rem;
+	border-bottom: none;
+	margin: 0;
+  -webkit-text-stroke: 0.35px;
+}
+h1.thanks{
+	font-family: 'alegre';
+	font-size: 8.9rem;
+	color: #c70220;
+	text-transform: uppercase;
+	text-align: center !important;
+}
+h1.thanks:after{
+	content: "";
+	background: url('../images/eclair.png') no-repeat right top;
+	width: 16rem;
+	height: 13rem;
+	display: block;
+	position: absolute;
+	top: -9rem;
+	right: 14.7rem;
+}
+h1.title{
+	font-family: 'helvetica-reg';
+	font-size: 2.2rem;
+	margin-bottom: 20px;
+	border-bottom: 2px solid rgba(200,200,200,0.3);
+	box-shadow: 0px 1px 0px rgba(255,255,255,0.3);
+}
+h2{
+	font-family: 'helvetica-reg';
+	font-size: 2.2rem;
+	color: #a80000;
+	margin: 0 auto;
+	width: 65%;
+	padding-bottom: 20px;
+	border-bottom: 2px solid rgba(200,200,200,0.3);
+	box-shadow: 0px 1px 0px rgba(255,255,255,0.3);
+  -webkit-text-stroke: 0.35px;
+}
+h2.full{
+	width: 105%;
+	margin-left: -15px;
+}
+h1.strong{
+	font-family: 'helvetica-reg';
+	font-size: 3.8rem;
+}
+
+a.button, button.button, .upload input, .upload label {
+	font-family: 'alegre';
+	font-size: 3.2rem;
+	color: #000;
+	background-color: rgba(280, 0, 0, 0.5);
+	width: 220px;
+	height: 45px;
+	border:0;
+	margin: 35px auto 120px auto; 
+	text-align: center;
+	cursor: pointer;
+}
+@media(max-width: 990px){
+	h1{
+		margin-bottom: 30px;
+	}
+	a.button, button.button, .upload input, .upload label {
+		width: 70%;
+		height: 85px;
+	}
+}
+
+.upload input{
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0.01;
+	font-size: 100px;
+}
+a.button:hover, 
+button.button:hover{
+	text-decoration: none;
+}
+div.upload {
+	text-align: center;
+	left: 0;
+}
+.upload .button{
+	display: inline-block;
+	float: none;
+}
+.upload .button,
+#register-submit {
+	margin: 35px auto 40px auto;
+	width: 220px;
+	height: 45px;
+} 
+a.link{
+	font-family: 'helvetica-ullt';
+	font-size: 1.7rem;
+	letter-spacing: 1px;
+	cursor: pointer;
+  -webkit-text-stroke: 0.35px;
+}
+a.link:hover{
+	text-decoration: underline;
+}
+a.reglement{
+	font-family: 'helvetica-ullt';
+	font-size: 1.6rem;
+	letter-spacing: 0.05rem;
+  -webkit-text-stroke: 0.35px;
+}
+a.back{
+	font-family: 'helvetica-ullt';
+	font-size: 1.6rem;
+	float: left;
+	padding-left: 25px;
+	margin-left: 25px;
+	position: relative;
+	bottom: 31px;
+}
+a.back:after{
+	content: "";
+	background: url('../images/common/fleche_back.png') no-repeat left center;
+	width: 15px;
+	height: 25px;
+	display: inline-block;
+	position: absolute;
+	left: 0;
+}
+a.paragraph {
+	font-family: 'helvetica-lt';
+	font-size: 2.8rem;
+}
+p.reglement{
+	font-family: 'helvetica-thcn';
+	font-size: 1.4rem;
+  -webkit-text-stroke: 0.35px;
+}
+p.explications{
+	font-family: 'helvetica-ullt';
+	font-size: 2rem;
+	text-align: left;
+	line-height: 2.2rem;
+  -webkit-text-stroke: 0.35px;
+}
+p.paragraph {
+	font-family: 'helvetica-ullt';
+	font-size: 2.8rem;
+  -webkit-text-stroke: 0.35px;
+}
+@media(max-width: 990px) {
+	p.paragraph, a.paragraph{
+		font-size: 4.9rem;
+	}
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+	#register-submit {
+		width: 70%;
+		height: 85px;
+		margin: -5px auto 40px auto;
+	} 
+
+	p.explications:last-child{
+		padding-bottom: 10px;
+	}
+
+	#zone_share{
+	  padding: 10%;
+	  margin: 0;
+	}
+
+	.content-game .invite-social .social-icon li{
+		margin: 1%;
+	}
+}

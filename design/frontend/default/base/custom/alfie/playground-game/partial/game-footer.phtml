@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-xs-12">
+        <a href="<?php echo $this->frontendUrl($this->game->getClassType() . '/terms', array('id' => $this->game->getIdentifier(), 'channel' => $this->channel))?>" class="reglement">
+            <?php echo $this->translate('Règlement du jeu'); ?>
+        </a>
+        <span> - </span>
+        <a href="<?php echo $this->frontendUrl($this->game->getClassType() . '/conditions', array('id' => $this->game->getIdentifier(), 'channel' => $this->channel))?>" class="reglement">
+            <?php echo $this->translate('Mentions légales'); ?>
+        </a>
+    </div>
+</div>

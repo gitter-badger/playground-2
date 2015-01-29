@@ -42,6 +42,8 @@ return array(
                     
                     'frontend_images' => array(
                         'assets' => array(
+                            'images/*.png',
+                            'images/*.ico',
                             'images/**/*.png',
                             'images/**/*.jpg',
                         ),

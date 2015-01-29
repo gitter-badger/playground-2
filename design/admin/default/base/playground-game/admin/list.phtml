@@ -77,6 +77,7 @@ if (isset($fm[0]))
                 | <a target="_blank" href='<?php echo $this->url('frontend/' . $game->getClassType(), array('id' => $game->getIdentifier(), 'channel' => 'preview'), array('force_canonical' => true));?>'><?php echo $this->translate('Preview'); ?></a> 
                 | <a href='<?php echo $this->url('admin/playgroundgame/set-active', array('gameId' => $game->getId())); ?>'><?php echo $activeString; ?></a>
                 | <a href='<?php echo $this->url('admin/playgroundgame/player-form', array('gameId' => $game->getId())); ?>'><?php echo $this->translate('Create the player form'); ?></a>
+                | <a href='<?php echo $this->url('admin/playgroundgame/export', array('gameId' => $game->getId())); ?>'><?php echo $this->translate('export the game'); ?></a>
             </td>
             <td><?php echo $game->entry; ?></td>
             <td><?php echo count($this->partnerSubscriber($game->getPartner(), false));?></td>
@@ -89,6 +90,7 @@ if (isset($fm[0]))
 	<li class="btn-admin bottom"><a href="<?php echo $this->url('admin/playgroundgame/create-quiz');?>"><?php echo $this->translate('Add new Quiz'); ?></a></li>
 	<li class="btn-admin bottom"><a href="<?php echo $this->url('admin/playgroundgame/create-instantwin');?>"><?php echo $this->translate('Add new Instant Win'); ?></a></li>
 	<li class="btn-admin bottom"><a href="<?php echo $this->url('admin/playgroundgame/create-postvote');?>"><?php echo $this->translate('Add new Post & Vote'); ?></a></li>
+	<li class="btn-admin bottom"><a href="<?php echo $this->url('admin/playgroundgame/import');?>"><?php echo $this->translate('Import a game'); ?></a></li>
 </ul>
 
 <?php echo $this->paginationControl($this->games, 'Sliding', 'playground-game/admin/pagination_gamelist', array('type' => $this->type, 'filter' => $this->filter)); ?>

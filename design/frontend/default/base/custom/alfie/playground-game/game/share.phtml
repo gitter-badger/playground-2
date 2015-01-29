@@ -1,0 +1,61 @@
+<?php 
+$nextStep = $this->game->nextStep('share');
+$nextStep = $nextStep ? $nextStep : 'result'
+?>
+<?php if(!isset($this->folderUrl)) $this->folderUrl = ""; ?>
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgroundgame'); ?>
+<?php echo $this->partial('playground-game/partial/game-header', array('game'=>$this->game, 'channel' => $this->channel));?>
+<div class="game-<?php echo $this->game->getClassType(); ?> wrap-game result">
+    <?php if($this->game->getClassType() == 'quiz'):?>
+        <?php if($this->winner || $this->prediction):?>
+            <?php echo $this->partial('playground-game/quiz/partial/winner', array(
+                'game'               =>$this->game,
+                'userCorrectAnswers' =>$this->userCorrectAnswers,
+                'maxCorrectAnswers'  =>$this->maxCorrectAnswers,
+                'ratioCorrectAnswers'=>$this->ratioCorrectAnswers,
+                'prediction'         =>$this->prediction,
+                'flashMessages'      =>$this->flashMessages, 
+                'channel' => $this->channel
+            ));?>
+        <?php else:?>
+            <?php echo $this->partial('playground-game/quiz/partial/looser', array(
+                'game'               =>$this->game,
+                'userCorrectAnswers' =>$this->userCorrectAnswers,
+                'maxCorrectAnswers'  =>$this->maxCorrectAnswers,
+                'ratioCorrectAnswers'=>$this->ratioCorrectAnswers,
+                'flashMessages'      =>$this->flashMessages, 
+                'channel' => $this->channel
+            ));?>
+        <?php endif;?>
+    
+        <?php if($this->userCorrectAnswers < $this->maxCorrectAnswers && $this->game->getVictoryConditions()>0):?>
+            <?php echo $this->partial('playground-game/quiz/partial/answers', array(
+                'gameCorrectAnswers' =>$this->gameCorrectAnswers, 
+                'channel' => $this->channel
+            ));?>
+        <?php endif;?>
+    <?php endif;?>
+    
+    <!-- BLOCK CONTENT -->
+    <div id="content-result" class="content-game clearfix">
+        <div class="col-md-1"></div>
+        <div class="page col-md-12" id="zone_share">
+            <!-- SPONSOR (parrainer) -->
+            <div>
+                <?php echo $this->partial('playground-game/partial/result-share', array(
+                        'game'          => $this->game,
+                        'secretKey'     => $this->secretKey,
+                        'socialLinkUrl' => $socialLinkUrl,
+                        'form'          => $this->form,
+                        'statusMail'    => $statusMail,
+                        'gameType'      => $this->game->getClassType(),
+                        'channel'       => $this->channel,
+                        'nextGame'      => $this->nextGame,
+                )); ?>
+            </div>
+        </div>
+    </div>
+    <?php echo $this->additional; ?>
+    <!-- END SPONSOR (parrainer) -->
+</div>
+<?php echo $this->partial('playground-game/partial/game-footer', array('game'=>$this->game, 'channel' => $this->channel));?>

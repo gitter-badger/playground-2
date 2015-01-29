@@ -2,7 +2,7 @@ $(function(){
 
 	/**************************** Homepage */
 	
-	var APP_ID =  $('meta[property="fb:app"]').attr('content');
+	var APP_ID =  $('meta[name="fb:app"]').attr('content');
 	var BIT_CLIENT = $('meta[property="bt:client"]').attr('content');
 	var BIT_USER = $('meta[property="bt:user"]').attr('content');
 	var BIT_KEY = $('meta[property="bt:key"]').attr('content');
@@ -90,9 +90,9 @@ $(function(){
 			method: 'feed',
 			message: "",
 			display: 'iframe',
-			name: "Plateforme Playground",
-			caption: dataFbMsg,
-			description: dataUrl,
+			name: "Playground",
+			caption: dataUrl,
+			description: dataFbMsg,
 			picture: imgFb,
 			link: dataSocialLink,
 			//actions: [{ name: 'action_links text!', link: 'http://www.google.com' }],
@@ -168,6 +168,9 @@ $(function(){
 			        var request = $.ajax({
 			            url: url + '/google?googleId=' + dataSecretKey,
 			            type: 'GET',
+			            success: function(data) {
+		            		shareSuccess(data, 'g+');
+		            	}
 			        }); 
 			        oneshare = false;
 			    }  
@@ -222,6 +225,9 @@ $(function(){
 					var request = $.ajax({
 			            url: url + '/fbshare?fbId=' + dataSecretKey,
 			            type: 'GET',
+			            success: function(data) {
+		            		shareSuccess(data, 'fb');
+		            	}
 			        });
 				}
 			}
@@ -239,7 +245,7 @@ $(function(){
 				if (response.request)
 					var request = $.ajax({
 			            url: dataUrl + '/fbrequest?fbId=' + dataSecretKey,
-			            type: 'GET',
+			            type: 'GET'
 			        });
 				else
 					alert(JSON.stringify(response));
@@ -272,24 +278,37 @@ $(function(){
 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 	})();
 	
-	/**** Twitter */
-	$.getScript("http://platform.twitter.com/widgets.js", function(){
-		function handleTweetEvent(event){
-	    	if (event) {
-	    		if(dataRoute){
-					var url = dataRoute;
-				}
-				else{
-					var url = dataUrl;
-				}
-	    		var request = $.ajax({
-	            	url: url + '/tweet?tweetId=' + dataSecretKey,
-	            	type: 'GET',
-	         	});
-	         	
-	     	}
-	   	}
-	   	twttr.events.bind('tweet', handleTweetEvent);
-	});
+	setTimeout(function() {
+		/**** Twitter */
+		$.getScript("http://platform.twitter.com/widgets.js", function(){
+			function handleTweetEvent(event){
+		    	if (event) {
+		    		if(dataRoute){
+						var url = dataRoute;
+					}
+					else{
+						var url = dataUrl;
+					}
+
+		    		var request = $.ajax({
+		            	url: url + '/tweet?tweetId=' + dataSecretKey,
+		            	type: 'GET',
+		            	success: function(data) {
+		            		shareSuccess(data, 'twitter');
+		            	}
+		         	});
+		         	
+		     	}
+		   	}
+			twttr.ready(function (twttr) {
+				twttr.events.bind('tweet', handleTweetEvent);
+			});
+		});
+	}, 500);
+	
+	function shareSuccess(data, plateform)
+	{
+		location.href = GAME_NEXT_STEP_URL;
+	}
 	
 });

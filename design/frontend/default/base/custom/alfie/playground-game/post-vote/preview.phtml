@@ -1,0 +1,37 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgroundgame');// Pour le texte ?>
+<?php $data = array();foreach($this->post->getPostElements() as $element):?>
+<?php $data[$element->getPosition()] = $element->getValue();?>
+<?php endforeach;?>
+<?php echo $this->partial('playground-game/partial/game-header', array('game'=>$this->game, 'channel' => $this->channel));?>
+<?php echo $this->partial('playground-game/partial/scripts', array('game'=>$this->game, 'channel' => $this->channel));?>
+<a href="<?php echo $this->frontendUrl(''. $this->game->getClassType() . '/play', array('id' => $this->game->getIdentifier(), 'channel' => $this->channel))?>" class="back"><?php echo $this->translate('retour')?></a>
+    <div class="game-postvote wrap-game preview" id="zone_perso">
+        <form action="" method="post" name="preview_form" class="page form-preview">
+            <div>
+                <h2 class="col-md-12 text-center full">
+                    <?php echo $this->translate('2. Votre Alfie'); ?>
+                </h2>
+                <div class="col-md-12 text-center">
+                    <div class="postvote-preview">
+                        <?php echo $this->partial('playground-game/post-vote/templates/' . $this->game->getTemplate(), array('data'=>$data, 'post'=>$this->post, 'channel' => $this->channel));?>
+                    </div>
+                </div>
+                <a href="<?php echo $this->frontendUrl(''. $this->game->getClassType() . '/play', array('id' => $this->game->getIdentifier(), 'channel' => $this->channel))?>" class="link">&gt; <?php echo $this->translate('Choisir une autre photo')?></a>
+                
+                
+            </div>
+            <div class="col-md-12 text-center clearfix">
+                <button type="submit" name="submitPost" value="" class="button validate">
+                    <?php echo $this->translate('OK'); ?>
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <?php echo $this->partial('playground-game/partial/game-footer', array('game'=>$this->game, 'channel' => $this->channel));?>
+</div>
+<!-- Sophus3 tag starts-->
+<script type="text/javascript" language="JavaScript">
+s3_page_alias="/promo/alfie/keepmeinformed/photo_validation/";
+</script>
+<!-- Sophus3 tag ends-->

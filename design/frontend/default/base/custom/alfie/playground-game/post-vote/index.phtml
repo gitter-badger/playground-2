@@ -1,0 +1,87 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgroundgame'); ?>
+<?php echo $this->partial('playground-game/partial/scripts', array('game'=>$this->game, 'channel' => $this->channel));?>
+<?php echo $this->partial('playground-game/partial/game-header', array('game'=>$this->game, 'channel' => $this->channel));?>
+
+<div id="zone_soutien">
+    <h1>
+        <?php echo $this->translate('Du 4 au 19 octobre, publiez votre <strong>#alfie</strong> et tentez de gagner')?>
+    </h1>
+    <div class="row main-row">
+        <div class="col-md-4 col-sm-12 dotation">
+            <p><?php echo $this->translate('<strong>1 journée de pilotage de l\'Alfa Romeo 4C</strong> sur le circuit du Mans')?>
+            </p>
+            <p class="small"><?php echo $this->translate('à l\'occasion des P Zero Experience Pirelli le 7 novembre')?>
+            </p>
+        </div>
+        <div class="col-md-4 col-sm-12 dotation">
+            <p><?php echo $this->translate('<strong>1 PLAYSTATION 4 + 1 jeu DRIVECLUB</strong>')?></p>
+        </div>
+        <div class="col-md-4 col-sm-12 dotation">
+            <p><?php echo $this->translate('<strong>8 jeux DRIVECLUB</strong>')?></p>
+        </div>
+        <div class="gifts"><?php echo $this->translate('+ 10 polos ALFA ROMEO'); ?></div>
+    </div>
+    
+    <a href="<?php echo $this->frontendUrl(''. $this->game->getClassType() . '/list', array('id' => $this->game->getIdentifier(), 'filter' => $this->game->getPostDisplayMode(), 'channel' => $this->channel))?>" class="link">
+    &gt;<?php echo $this->translate(' Voir tous les Alfies')?>
+    </a>
+</div>
+<!-- contenu article -->
+<div id="content-article" class="post-vote">
+    <div class="welcome-block<?php if($this->layout()->facebooktemplate): echo ' fb-target'; endif ?>"><?php echo $this->game->getWelcomeBlock(); ?></div>
+    <div class="clearfix">
+        <div <?php if ($this->isCtaActive):?> id="fb-play"<?php endif;?>>
+            <a href="<?php echo $this->frontendUrl($this->game->getClassType() . '/'. $this->game->nextStep('index'), array('id' => $this->game->getIdentifier(), 'channel' => $this->channel))?>" class="button participate">
+                <?php echo $this->translate('Participer'); ?></span>
+            </a>
+        </div>
+    </div>
+	<?php if(count($this->flashMessages)>0):?>;
+	<p class="already-play">
+	    <?php echo $this->flashMessages[0];?>
+	</p>
+    <?php endif;?>
+</div>
+<?php echo $this->partial('playground-game/partial/game-footer', array('game'=>$this->game, 'channel' => $this->channel));?>
+<!-- Sophus3 tag starts-->
+<script type="text/javascript" language="JavaScript">
+s3_page_alias="/promo/alfie/keepmeinformed/entry/";
+</script>
+<!-- Sophus3 tag ends-->
+
+
+<?php 
+
+echo "<h1>" . $game->getId() . "</h1>";
+
+$s = serialize($game);
+
+//echo $s;
+
+$g = unserialize($s);
+
+echo $g->getId();
+
+?>
+
+
+<?php 
+/*
+$rep = __DIR__.'/../../../../../../../../public/media/grg/';
+$dir = opendir($rep);
+        while($file = readdir($dir)) { 
+            if($file != '.' && $file != '..' && !is_dir(__DIR__.$rep.$file)) {
+                $ext = pathinfo($file, PATHINFO_EXTENSION);
+                $img = new \Imagick($rep . $file);
+                $img->cropThumbnailImage( 100, 100 );
+                //$img->thumbnailImage(580, 0);
+                $img->setImageCompression(\Imagick::COMPRESSION_JPEG);
+                $img->setImageCompressionQuality(75);
+                // Strip out unneeded meta data
+                $img->stripImage();
+                $img->writeImage($rep . str_replace('.'.$ext, '-thumbnail.'.$ext, $file));
+            }
+        }
+closedir($dir); // Were not using it anymore
+*/
+

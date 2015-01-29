@@ -1,0 +1,101 @@
+*{
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+}
+/* ---- End Fonts ---- */
+
+body{
+  background: #000;
+  color: #fff;
+}
+ 
+
+/* HEADER */
+.header{
+  width: 100%;
+}
+#logo{
+  margin: 0 auto;
+  padding: 45px 0 25px 0;
+}
+@media(max-width: 990px) {
+  #logo{
+    width: 20%;
+  }
+  .participate{
+  	line-height: 90px;
+  }
+}
+
+/* ZONES */
+#zone_soutien {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 30px 55px 20px 55px; 
+}
+#zone_gallery{
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 35px 0px 50px 0px;
+}
+#zone_perso{
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 35px 165px 35px 165px;
+}
+#zone_perso h2{
+  text-align: left;
+}
+#zone_perso .requires{
+  padding-top: 10px;
+}
+#zone_perso .check-el label{
+  line-height: normal;
+}
+#zone_perso .check-el input{
+  height: 20px;
+}
+#zone_perso .check-el .col-md-12{
+  padding-bottom: 40px;
+}
+#zone_perso .check-el .comm{
+  text-align: left;
+  padding-bottom: 10px;
+}
+#zone_share{
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 35px 90px 35px 90px;
+  margin-bottom: 200px;
+}
+#zone_fin{
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 130px 165px 35px 165px;
+  margin-bottom: 200px;
+}
+#zone_fin a.paragraph,
+#zone_fin p.paragraph{
+  font-size: 3.5rem;
+}
+@media(max-width: 990px) {
+  #zone_soutien{
+    padding: 55px 45px 20px 45px;
+  }
+  #zone_perso {
+    padding: 35px 50px 35px 50px;
+  }
+  #zone_fin{
+    padding: 130px 10% 35px 10%;
+  }
+}
+
+.clearfix:before,
+.clearfix:after{ content:""; display:table; clear:both }
+
+
+/* CONTENTS */
+.game-content {
+  background: url('../images/common/background.jpg') no-repeat;
+  text-align: center;
+  -webkit-background-size: cover; /* pour Chrome et Safari */
+  -moz-background-size: cover; /* pour Firefox */
+  -o-background-size: cover; /* pour Opera */
+  background-size: cover; /* version standardisée */
+  overflow: hidden;
+}

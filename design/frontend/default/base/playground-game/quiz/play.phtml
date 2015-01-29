@@ -56,7 +56,7 @@ $form->setAttribute('action', $this->frontendUrl('quiz/play', array('id' => $thi
                                         <?php $attributes = $element->getAttributes(); ?>
                                         <?php foreach ($element->getValueOptions() as $k => $option) : ?>
                                             <label>
-                                                <input type="checkbox" value="<?php echo $k ?>" name="<?php echo $attributes['name']; ?>">
+                                                <input type="checkbox" value="<?php echo $k ?>" name="<?php echo $attributes['name']; ?>[]">
                                                 <?php echo $option ?>
                                             </label>
                                         <?php endforeach; ?> 
@@ -88,7 +88,7 @@ $form->setAttribute('action', $this->frontendUrl('quiz/play', array('id' => $thi
                                 <?php $attributes = $element->getAttributes(); ?>
                                 <?php foreach ($element->getValueOptions() as $k => $option) : ?>
                                     <label>
-                                        <input type="checkbox" value="<?php echo $k ?>" name="<?php echo $attributes['name']; ?>">
+                                        <input type="checkbox" value="<?php echo $k ?>" name="<?php echo $attributes['name']; ?>[]">
                                         <?php echo $option ?>
                                     </label>
                                 <?php endforeach; ?>  

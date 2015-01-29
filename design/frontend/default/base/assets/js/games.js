@@ -28,14 +28,7 @@ $(function ()
 	        	$scratchGame.attr('data-percentscratched', percent);
 	        	if(percent > 70){ // Has been scratched enough to end the game
 	        		$scratchGame.wScratchPad('clear');
-	        		$('#next-instant-win-step').show().one('click', function (e)
-	        		{
-	        			e.preventDefault();
-	        			$(this).hide();
-						$('#play-instantwin').hide();
-						$('html, body').animate({ scrollTop: 0 }, 0);
-						$('#result-instantwin').fadeIn();
-	        		});
+	        		$('#next-instant-win-step').show();
 	        	}
 	        }
 		});

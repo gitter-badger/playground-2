@@ -92,7 +92,7 @@
                         <!-- terminer -->
                         <div id="terminer">
                             <div class="col-md-12 text-center">
-                                <a class="btn btn-default btn-green" href="<?php echo $this->frontendUrl(''. $this->game->getClassType() . '/bounce', array('id' => $this->game->getIdentifier(), 'channel' => $this->channel));?>">
+                                <a class="btn btn-default btn-green" href="<?php echo $this->frontendUrl($this->game->getClassType() . '/' . $this->game->nextStep('result'), array('id' => $this->game->getIdentifier(), 'channel' => $this->channel));?>">
                                     <?php echo $this->translate('Finish'); ?>
                                 </a>
                             </div>
