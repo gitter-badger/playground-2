@@ -96,9 +96,9 @@ $form->setAttribute('action', $this->frontendUrl('quiz/play', array('id' => $thi
 	                            <?php echo $this->formTextarea($element); ?>
 	                        <?php endif;?>
                             <?php if ( ! $element instanceof Zend\Form\Element\Textarea): ?>
-	                        <!-- <div class="explanation">
+	                           <!-- <div class="explanation">
                                 <?php foreach ($element->getvalueOptions() as $answerLabel) :?>
-                                    <span><?php echo $this->explanations[$answerLabel]; ?></span>
+                                   <span><?php echo $this->explanations[$answerLabel]; ?></span>
                                 <?php endforeach; ?>  
                             </div> -->
                             <?php endif;?>

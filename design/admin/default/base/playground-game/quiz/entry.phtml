@@ -2,13 +2,7 @@
 <?php $locale= $this->plugin('translate')->getTranslator()->getLocale(); ?>
 <?php $downloadLink = $this->url('admin/'. $this->game->getClassType() .'/download', array('gameId' => $this->game->getId()));?>
 <?php $drawLink = $this->url('admin/'. $this->game->getClassType() .'/draw', array('gameId' => $this->game->getId()));?>
-<?php
-/*$fm = $this->flashMessenger()->setNamespace('playgroundgame')->getMessages();
-if (isset($fm[0]))
-{
-    print '<span class=>' . $fm[0] . '</span>';
-}*/
-?>
+
 <h1><a href="<?php echo $this->url('admin/playgroundgame/edit-quiz', array('gameId' => $this->gameId)) ?>"><?php echo $this->game->getTitle(); ?></a></h1>
 
 <h3><?php echo $this->translate('Liste des Participants'); ?></h3>
@@ -33,6 +27,7 @@ if (isset($fm[0]))
                 <th><?php echo $key ?></th>
             <?php endforeach; ?>
         <?php endif; ?>
+        <th><?php echo $this->translate('Answers'); ?></th>
         <th><?php echo $this->translate('A gagné'); ?></th>
         <th><?php echo $this->translate('Date - H'); ?></th>
     </tr>
@@ -52,6 +47,12 @@ if (isset($fm[0]))
                     <td><?php if (is_array($attrib)) {echo implode(', ', $attrib); } else { echo $attrib; } ?></td>
                 <?php endforeach; ?>
             <?php endif; ?>
+            <td>
+                <?php foreach ($this->replies[$entry->getId()] as $key => $value) : ?>
+                    <?php echo $value->getAnswer(); ?> <br />
+                <?php endforeach; ?>
+            </td>
+
             <td><?php echo $entry->getWinner(); ?></td>
 
             <?php //$editLink = $this->url('admin/playgroundgame/edit', array('gameId' => $game->getId()));?>
