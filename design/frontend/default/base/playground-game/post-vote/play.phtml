@@ -82,6 +82,20 @@ $form->setAttribute('action', $this->frontendUrl(''. $this->game->getClassType()
                             <?php echo $this->formElementErrors($element) ?>
                         </div>
                     </div>
+                <?php elseif ($element instanceof Zend\Form\Element\Radio): ?>
+                    <?php $attributes = $element->getAttributes(); ?>
+                    <div class="form-group clearfix">
+                        <label class="col-md-5">
+                            <?php echo ($element->getLabel()) ? $this->formLabel($element) . ' ' . $requiredContent : ''; ?>
+                        </label>
+                        <?php foreach ($element->getValueOptions() as $k => $option) : ?>
+                            <label>
+                                <input type="radio" value="<?php echo $k ?>" name="<?php echo $attributes['name']; ?>[]">
+                                <?php echo $option ?>
+                            </label>
+                        <?php endforeach; ?>
+                        <?php echo $this->formElementErrors($element) ?>
+                     </div>
                 <?php elseif ($element instanceof Zend\Form\Element\MultiCheckbox): ?>
                     <?php $attributes = $element->getAttributes(); ?>
                     <div class="form-group clearfix">
