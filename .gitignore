@@ -1,8 +1,23 @@
-/.project
-/vendor
-/composer.lock
-.settings
+# Composer files
 composer.phar
-/public
-/build/coverage/
+vendor/
 
+# Local configs
+config/autoload/*.local.php
+
+# Binary gettext files
+*.mo
+
+# Data
+data/logs/
+data/cache/
+data/sessions/
+data/tmp/
+temp/
+public/
+build/coverage/
+
+# config files
+.DS_Store
+.settings
+.project

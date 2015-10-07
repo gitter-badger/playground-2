@@ -54,8 +54,8 @@ var line_hidden = function (liId, theForm, fieldProp, uniqueId, liClass)
     hiddenRequired('id', '').appendTo(li);
     hiddenRequired('value', '').appendTo(li);
 
-    formButton("Delete", "delete_li").appendTo(li);
-    formButton("Edit", "edit_li").appendTo(li);
+    formButton("Supprimer", "delete_li").appendTo(li);
+    formButton("Editer", "edit_li").appendTo(li);
 
     clearBoth().appendTo(li);
 };
@@ -85,8 +85,8 @@ var line_url = function (liId, theForm, fieldProp, uniqueId, liClass)
     hiddenRequired('min', '').appendTo(li);
     hiddenRequired('max', '').appendTo(li);
 
-    formButton("Delete", "delete_li").appendTo(li);
-    formButton("Edit", "edit_li").appendTo(li);
+    formButton("Supprimer", "delete_li").appendTo(li);
+    formButton("Editer", "edit_li").appendTo(li);
 
     clearBoth().appendTo(li);
 };
@@ -122,8 +122,8 @@ var line_date = function (liId, theForm, fieldProp, uniqueId, liClass)
     hiddenRequired('min', '').appendTo(li);
     hiddenRequired('max', '').appendTo(li);
 
-    formButton("Delete", "delete_li").appendTo(li);
-    formButton("Edit", "edit_li").appendTo(li);
+    formButton("Supprimer", "delete_li").appendTo(li);
+    formButton("Editer", "edit_li").appendTo(li);
 
     clearBoth().appendTo(li);
 };
