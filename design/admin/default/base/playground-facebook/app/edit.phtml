@@ -5,6 +5,9 @@ $form->prepare();
 ?>
 
 <h1><?php $title = $this->isCreate ? $this->translate('Create Appli') : $this->translate('Edit Appli'); echo $title; ?></h1>
+<strong><?php echo $this->translate('Your Facebook app must have its "Require App Secret" set to false (go in settings / advanced on the security tab and disable "Require App Secret")') ?></strong><br/><br/>
+
+<p><?php echo $this->translate("to create a tab app on a page, you'll have to call this URL with the appId and the url of your game as parameters:")?> <a href="https://www.facebook.com/dialog/pagetab?app_id=111111111111111&redirect_uri=https://www.mycompany.com/quiz/myquiz">https://www.facebook.com/dialog/pagetab?app_id=111111111111111&redirect_uri=https://www.mycompany.com/quiz/myquiz</a></p>
 
 <?php echo $this->form()->openTag($form) ?>
 <?php $form->get('submit')->setLabel($this->translate('Validate')); ?>

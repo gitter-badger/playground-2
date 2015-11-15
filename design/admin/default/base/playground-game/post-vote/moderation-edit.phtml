@@ -1,17 +1,30 @@
 <?php $this->plugin('translate')->setTranslatorTextDomain('playgroundgame');// Pour le texte ?>
 <?php $validation = $this->url('admin/playgroundgame/postvote-moderation-edit', array('postId' => $post->getId(), 'status' => 'validation'));?>
 <?php $rejection = $this->url('admin/playgroundgame/postvote-moderation-edit', array('postId' => $post->getId(), 'status' => 'rejection'));?>
-<?php $data = array();foreach($this->post->getPostElements() as $element):?>
-<?php $data[$element->getPosition()] = $element->getValue();?>
-<?php endforeach;?>
-<h2 class="green">Aperçu de votre message</h2>
-<p><?php echo $this->game->getForm()->getDescription(); ?></p>
-<div class="span12 message">
-   <div class="row-fluid">
-       <?php echo $this->partial('playground-game/post-vote/templates/' . $this->game->getTemplate(), array('data'=>$data));?>
-   </div>
-   <div>
-        <a href='<?php echo $rejection ?>'><?php echo $this->translate('Reject'); ?></a>
-        <a href='<?php echo $validation ?>'><?php echo $this->translate('Validate'); ?></a>
-   </div>
+
+<h2 class="green"><?php echo $this->translate('Aperçu du post')?></h2>
+<div>
+    <a href='<?php echo $rejection ?>'><?php echo $this->translate('Reject'); ?></a>
+    <a href='<?php echo $validation ?>'><?php echo $this->translate('Validate'); ?></a>
+</div>
+
+<div class="row-fluid">
+   	<?php foreach($this->post->getPostElements() as $e):?>
+	<?php echo "<h3>".$e->getName()."</h3>";?>
+	<?php 
+		$val = $e->getValue();
+		if(substr($val, -4) == '.png' || substr($val, -4) == '.jpg' || substr($val, -4) == '.gif'){
+			echo "<img src='/". $val ."' width='40'><br/>";
+		} elseif(substr($val, -4) == '.mp4'){
+			echo "<video src='". $val ."' width='320' controls='true'><br/>";
+		} else{
+			echo $val;
+		}
+	?>
+	<br/>
+	<?php endforeach;?>
+</div>
+<div>
+    <a href='<?php echo $rejection ?>'><?php echo $this->translate('Reject'); ?></a>
+    <a href='<?php echo $validation ?>'><?php echo $this->translate('Validate'); ?></a>
 </div>

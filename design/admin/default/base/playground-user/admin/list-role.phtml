@@ -1,0 +1,35 @@
+<?php $this->plugin('translate')->setTranslatorTextDomain('playgrounduser');// Pour le texte ?>
+
+<ul class="liste-buttons">
+    <li class="btn-admin"><a href="<?php echo $this->url('admin/playgrounduser/createrole', array('roleId' => 0));?>"><?php echo $this->translate('Add new role'); ?></a></li>
+</ul>
+
+<h1><?php echo $this->translate('Roles list'); ?></h1>
+
+<div class="pagination-top"><?php echo $this->paginationControl($this->roles, 'Sliding', 'playground-user/admin/pagination_userlist.phtml', array('filter' => $this->filter)); ?></div>
+
+<table class="table">
+    <tr>
+        <!-- <th><?php echo $this->translate('Id'); ?></th> -->
+        <th><?php echo $this->translate('Role'); ?></th>
+        <th><?php echo $this->translate('Parent'); ?></th>
+        <th></th>
+    </tr>
+
+    <?php foreach ($this->roles as $role): ?>
+        <tr>
+            <td><?php echo $role->getRoleId() ?></td>
+            <td><?php if(!empty($role->getParent())) echo $role->getParent()->getRoleId() ?></td>
+            <td>
+            <?php //$editLink   = $this->url('admin/playgrounduser/edit', array('userId' => $role->getId())); ?>
+            <!--a href='<?php //echo $editLink ?>'>Editer</a-->
+            </td>
+        </tr>
+    <?php endforeach;?>
+</table>
+
+<ul class="liste-buttons bottom">
+    <li class="btn-admin bottom"><a href="<?php echo $this->url('admin/playgrounduser/createrole', array('roleId' => 0));?>"><?php echo $this->translate('Add new role'); ?></a></li>
+</ul>
+
+<?php echo $this->paginationControl($this->roles, 'Sliding', 'playground-user/admin/pagination_userlist.phtml', array('filter' => $this->filter)); ?>

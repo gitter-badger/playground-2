@@ -72,7 +72,7 @@ if (isset($fm[0]))
             <td>
                 <a href='<?php echo $entryLink ?>'><?php echo $this->translate('Entries'); ?></a> 
                 | <a href='<?php echo $editLink ?>'><?php echo $this->translate('Edit'); ?></a> 
-                | <a href='<?php echo $deleteLink ?>'><?php echo $this->translate('Delete'); ?></a><?php if($optionLink != ''):?> 
+                | <!--a href='<?php echo $deleteLink ?>'><?php echo $this->translate('Delete'); ?></a--><?php if($optionLink != ''):?> 
                 | <a href='<?php echo $optionLink ?>'><?php echo $optionLinkName ?></a><?php endif;?> 
                 | <a target="_blank" href='<?php echo $this->url('frontend/' . $game->getClassType(), array('id' => $game->getIdentifier(), 'channel' => 'preview'), array('force_canonical' => true));?>'><?php echo $this->translate('Preview'); ?></a> 
                 | <a href='<?php echo $this->url('admin/playgroundgame/set-active', array('gameId' => $game->getId())); ?>'><?php echo $activeString; ?></a>
@@ -93,4 +93,4 @@ if (isset($fm[0]))
 	<li class="btn-admin bottom"><a href="<?php echo $this->url('admin/playgroundgame/import');?>"><?php echo $this->translate('Import a game'); ?></a></li>
 </ul>
 
-<?php echo $this->paginationControl($this->games, 'Sliding', 'playground-game/admin/pagination_gamelist', array('type' => $this->type, 'filter' => $this->filter)); ?>
+<?php echo $this->paginationControl($this->games, 'Sliding', 'playground-game/game/pagination_gamelist', array('type' => $this->type, 'filter' => $this->filter)); ?>

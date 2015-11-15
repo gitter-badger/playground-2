@@ -1,12 +1,6 @@
 <?php $this->plugin('translate')->setTranslatorTextDomain('playgroundgame');// Pour le texte ?>
 <?php $downloadLink = $this->url('admin/'. $this->game->getClassType() .'/download', array('gameId' => $this->game->getId()));?>
-<?php
-/*$fm = $this->flashMessenger()->setNamespace('playgroundgame')->getMessages();
-if (isset($fm[0]))
-{
-    print '<span class=>' . $fm[0] . '</span>';
-}*/
-?>
+
 <h1><a href="<?php echo $this->url('admin/playgroundgame/edit-postvote', array('gameId' => $this->gameId)) ?>"><?php echo $this->game->getTitle(); ?></a></h1>
 
 <h3><?php echo $this->translate('Liste des Participants'); ?></h3>
@@ -22,51 +16,93 @@ if (isset($fm[0]))
             <th><?php echo $this->translate('Prenom'); ?></th>
             <th><?php echo $this->translate('E-mail'); ?></th>
         <?php endif;?>
-        <?php $post = $this->posts->getItem(0); ?>
-        <?php if ($post->getEntry()->getPlayerData()) : ?>
-            <?php $entryData = json_decode($post->getEntry()->getPlayerData()); ?>
-            <?php foreach ($entryData as $key => $attrib): ?>
-                <td><?php echo "Register - ".$key;?> </td>
-            <?php endforeach; ?>
-        <?php endif; ?>
 
+        <?php
+            $head = array();
+            foreach($this->posts as $post){
+                $entryData = array();
+                if ($post->getEntry()->getPlayerData()){
+                    $entryData = json_decode($post->getEntry()->getPlayerData(), true);
+                }
+                foreach ($entryData as $key => $attrib){
+                    $head[$key] = 1;
+                }
+            }
+        ?>
+        <th><?php echo "Post Id ";?> </th>
+        <?php foreach ($head as $key => $v): ?>
+            <th><?php echo $key; ?> </th>
+        <?php endforeach; ?>
+
+        <th>Post</th>
         <th><?php echo $this->translate('Modération'); ?></th>
         <th></th>
         <th></th>
     </tr>
     <?php foreach ($this->posts as $post): ?>
-        <tr>
-            <?php if (!$this->game->getAnonymousAllowed()) : ?>
-                <td><?php echo $post->getUser()->getId(); ?></td>
-                <td><?php echo $post->getEntry()->getCreatedAt()->format('d/m/Y H:i:s'); ?></td>
-                <td><?php echo $post->getUser()->getUsername(); ?></td>
-                <td><?php echo $post->getUser()->getLastname(); ?></td>
-                <td><?php echo $post->getUser()->getFirstname(); ?></td>
-                <td><?php echo $post->getUser()->getEmail(); ?></td>
-            <?php endif; ?>
-            <?php if ($post->getEntry()->getPlayerData()) : ?>
-                <?php $entryData = json_decode($post->getEntry()->getPlayerData()); ?>
-                <?php foreach ($entryData as $key => $attrib): ?>
-                    <td><?php if (is_array($attrib)) {echo implode(', ', $attrib); } else { echo $attrib; } ?></td>
-                <?php endforeach; ?>
-            <?php endif; ?>
-            <td>
-            <?php if($post->getStatus() == 0): ?>
-                En cours de création
-            <?php elseif($post->getStatus() == 1):?>
-                En attente de modération
-            <?php elseif($post->getStatus() == 2):?>
-                Accepté
-            <?php elseif($post->getStatus() == 9):?>
-                Refusé
-            <?php else :?>
-                Validé / Partagé
-            <?php endif;?>
-            </td>
-            <?php $editLink = $this->url('admin/playgroundgame/postvote-moderation-edit', array('postId' => $post->getId()));?>
-            <td><a href='<?php echo $editLink ?>'><?php echo $this->translate('Moderate'); ?></a></td>
-            <td></td>
-        </tr>
+        <?php
+            $display = false;
+            $photo = '';
+            foreach($post->getPostElements() as $e){
+                if($e->getName() === 'photo'){
+                    $photo = '<img src="/' . $e->getValue() .'" width="40">';
+                }
+                if($e->getName() === 'video' && !empty($e->getValue())){
+                    $display = true;
+                }
+            }
+        ?>
+        <?php if($display): ?>
+            <tr>
+                <td><?php echo $post->getId() ?></td>
+                <?php if (!$this->game->getAnonymousAllowed()) : ?>
+                    <td><?php echo $post->getUser()->getId(); ?></td>
+                    <td><?php echo $post->getEntry()->getCreatedAt()->format('d/m/Y H:i:s'); ?></td>
+                    <td><?php echo $post->getUser()->getUsername(); ?></td>
+                    <td><?php echo $post->getUser()->getLastname(); ?></td>
+                    <td><?php echo $post->getUser()->getFirstname(); ?></td>
+                    <td><?php echo $post->getUser()->getEmail(); ?></td>
+                <?php endif; ?>
+
+
+                <?php
+                    $entryData = array();
+                    if ($post->getEntry()->getPlayerData()){
+                        $entryData = json_decode($post->getEntry()->getPlayerData(), true);
+                    }
+                    foreach($head as $key => $v){
+                        if(isset($entryData[$key])){
+                            $val = $entryData[$key];
+                            if (is_array($val)) {
+                                echo '<td>'.implode(', ', $val).'</td>'; 
+                            } else { 
+                                echo '<td>'.$val.'</td>'; 
+                            }
+                        } else {
+                            echo '<td>&nbsp;</td>';
+                        }
+                    }
+
+                ?>
+                <td><?php echo $photo; ?></td>
+                <td>
+                <?php if($post->getStatus() == 0): ?>
+                    En cours de création
+                <?php elseif($post->getStatus() == 1):?>
+                    En attente de modération
+                <?php elseif($post->getStatus() == 2):?>
+                    Accepté
+                <?php elseif($post->getStatus() == 9):?>
+                    Refusé
+                <?php else :?>
+                    Validé / Partagé
+                <?php endif;?>
+                </td>
+                <?php $editLink = $this->url('admin/playgroundgame/postvote-moderation-edit', array('postId' => $post->getId()));?>
+                <td><a href='<?php echo $editLink ?>'><?php echo $this->translate('Moderate'); ?></a></td>
+                <td></td>
+            </tr>
+        <?php endif; ?>
     <?php endforeach; ?>
 </table>
-<?php echo (count($this->posts)>1)?$this->paginationControl($this->posts, 'Sliding', 'playground-game/admin/pagination_entrylist', array('classType' => $this->game->getClassType()  ,'gameId' => $this->gameId)):''; ?>
+<?php echo (count($this->posts)>1)?$this->paginationControl($this->posts, 'Sliding', 'playground-game/game/pagination_entrylist', array('classType' => $this->game->getClassType()  ,'gameId' => $this->gameId)):''; ?>
