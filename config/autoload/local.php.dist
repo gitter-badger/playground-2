@@ -18,7 +18,7 @@ return array(
     'design' => array(
         'admin' => array(
             'package' => 'default',
-            'theme' => 'playground',
+            'theme' => 'base',
         ),
         'frontend' => array(
             'package' => 'default',
