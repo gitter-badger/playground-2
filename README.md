@@ -7,7 +7,7 @@ Playground
 [![Dependency Status](https://www.versioneye.com/user/projects/528a9a8f632bac352d00013b/badge.png)](https://www.versioneye.com/user/projects/528a9a8f632bac352d00013b)
 [![Coverage Status](https://coveralls.io/repos/gregorybesson/playground/badge.png)](https://coveralls.io/r/gregorybesson/playground)
 
-Welcome to Playground an Open Source Game Platform tool.
+Welcome to Playground an Open Source Game Platform System.
 
 This document contains information on how to download, install, and start using Playground.
 
