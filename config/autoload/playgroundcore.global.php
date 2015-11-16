@@ -5,7 +5,7 @@ $settings = array(
 	 * TODO : Descendre jusqu'à l'action
 	 */
 	/*'core_layout' => array(
-			'AdfabUser' => 'layout/1column',
+			'PlaygroundUser' => 'layout/1column',
 	),*/
 
     /**

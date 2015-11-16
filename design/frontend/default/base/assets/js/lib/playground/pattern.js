@@ -1,6 +1,5 @@
 /**
  * this is the main application file, which one that init project bind event, etc...
- * Copyright (C) 2013 - Adfab - nicolas labb�
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
