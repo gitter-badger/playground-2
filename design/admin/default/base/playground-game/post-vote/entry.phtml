@@ -8,101 +8,33 @@
 <a href='<?php echo $downloadLink ?>'>Export CSV</a>
 <table class="table">
     <tr>
-        <?php if (!$this->game->getAnonymousAllowed()) : ?>
-            <th><?php echo $this->translate('Id'); ?></th>
-            <th><?php echo $this->translate('Date'); ?></th>
-            <th><?php echo $this->translate('Pseudo'); ?></th>
-            <th><?php echo $this->translate('Nom'); ?></th>
-            <th><?php echo $this->translate('Prenom'); ?></th>
-            <th><?php echo $this->translate('E-mail'); ?></th>
-        <?php endif;?>
-
-        <?php
-            $head = array();
-            foreach($this->posts as $post){
-                $entryData = array();
-                if ($post->getEntry()->getPlayerData()){
-                    $entryData = json_decode($post->getEntry()->getPlayerData(), true);
-                }
-                foreach ($entryData as $key => $attrib){
-                    $head[$key] = 1;
-                }
-            }
-        ?>
-        <th><?php echo "Post Id ";?> </th>
-        <?php foreach ($head as $key => $v): ?>
-            <th><?php echo $key; ?> </th>
+        <?php foreach ($this->header as $k => $v): ?>
+            <th><?php echo $k; ?></th>
         <?php endforeach; ?>
 
-        <th>Post</th>
-        <th><?php echo $this->translate('Modération'); ?></th>
-        <th></th>
+        <th><?php echo $this->translate('Moderate'); ?></th>
         <th></th>
     </tr>
-    <?php foreach ($this->posts as $post): ?>
-        <?php
-            $display = false;
-            $photo = '';
-            foreach($post->getPostElements() as $e){
-                if($e->getName() === 'photo'){
-                    $photo = '<img src="/' . $e->getValue() .'" width="40">';
-                }
-                if($e->getName() === 'video' && !empty($e->getValue())){
-                    $display = true;
-                }
-            }
-        ?>
-        <?php if($display): ?>
-            <tr>
-                <td><?php echo $post->getId() ?></td>
-                <?php if (!$this->game->getAnonymousAllowed()) : ?>
-                    <td><?php echo $post->getUser()->getId(); ?></td>
-                    <td><?php echo $post->getEntry()->getCreatedAt()->format('d/m/Y H:i:s'); ?></td>
-                    <td><?php echo $post->getUser()->getUsername(); ?></td>
-                    <td><?php echo $post->getUser()->getLastname(); ?></td>
-                    <td><?php echo $post->getUser()->getFirstname(); ?></td>
-                    <td><?php echo $post->getUser()->getEmail(); ?></td>
-                <?php endif; ?>
-
-
-                <?php
-                    $entryData = array();
-                    if ($post->getEntry()->getPlayerData()){
-                        $entryData = json_decode($post->getEntry()->getPlayerData(), true);
-                    }
-                    foreach($head as $key => $v){
-                        if(isset($entryData[$key])){
-                            $val = $entryData[$key];
-                            if (is_array($val)) {
-                                echo '<td>'.implode(', ', $val).'</td>'; 
-                            } else { 
-                                echo '<td>'.$val.'</td>'; 
-                            }
-                        } else {
-                            echo '<td>&nbsp;</td>';
-                        }
-                    }
-
-                ?>
-                <td><?php echo $photo; ?></td>
+    <?php foreach ($this->entries as $entry): ?>
+        <tr>
+            <?php foreach ($entry as $key => $value):?>
                 <td>
-                <?php if($post->getStatus() == 0): ?>
-                    En cours de création
-                <?php elseif($post->getStatus() == 1):?>
-                    En attente de modération
-                <?php elseif($post->getStatus() == 2):?>
-                    Accepté
-                <?php elseif($post->getStatus() == 9):?>
-                    Refusé
-                <?php else :?>
-                    Validé / Partagé
-                <?php endif;?>
-                </td>
-                <?php $editLink = $this->url('admin/playgroundgame/postvote-moderation-edit', array('postId' => $post->getId()));?>
-                <td><a href='<?php echo $editLink ?>'><?php echo $this->translate('Moderate'); ?></a></td>
-                <td></td>
-            </tr>
-        <?php endif; ?>
+                    <?php 
+                    if(substr($value, -4) == '.png' || substr($value, -4) == '.jpg' || substr($value, -4) == '.gif'){
+                        echo "<img src='/". $value ."' width='40'><br/>";
+                    } elseif(substr($value, -4) == '.mp4'){
+                        echo "<video src='". $value ."' width='80' controls='true'><br/>";
+                    } else{
+                        echo $value;
+                    }
+                    ?>
+            </td>
+            <?php endforeach; ?>
+
+            <?php $editLink = $this->url('admin/playgroundgame/postvote-moderation-edit', array('postId' => $entry['id']));?>
+            <td><a href='<?php echo $editLink ?>'><?php echo $this->translate('Moderate'); ?></a></td>
+            <td></td>
+        </tr>
     <?php endforeach; ?>
 </table>
-<?php echo (count($this->posts)>1)?$this->paginationControl($this->posts, 'Sliding', 'playground-game/game/pagination_entrylist', array('classType' => $this->game->getClassType()  ,'gameId' => $this->gameId)):''; ?>
+<?php echo (count($this->paginator)>1)?$this->paginationControl($this->paginator, 'Sliding', 'playground-game/game/pagination_entrylist', array('classType' => $this->game->getClassType()  ,'gameId' => $this->gameId)):''; ?>

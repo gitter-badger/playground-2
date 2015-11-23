@@ -27,7 +27,7 @@
 	        <li data-row="2" data-col="1" data-sizex="2" data-sizey="2">
 	        	<div style="font-size:80px; margin:60px 0 0 50px"><?php echo number_format($this->participations, 0, ' ', ' ') ?><span style="font-size:40px;">participations</span> 
 	        	</div>
-	        	<div style="margin:30px 0 0 50px;color:#888"><span style="color:#2CD35B">+<?php echo number_format(100*($this->participations - $this->participationsLastWeek)/$this->participations, 0,' ', ' '); ?>%</span> participations depuis la semaine dernière</div>
+	        	<div style="margin:30px 0 0 50px;color:#888"><?php if($this->participations > 0):?><span style="color:#2CD35B">+<?php echo number_format(100*($this->participations - $this->participationsLastWeek)/$this->participations, 0,' ', ' '); ?>%</span> participations depuis la semaine dernière<?php endif;?></div>
 	        	<div class="ct-chart"></div>
 	        </li>
 	        <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">

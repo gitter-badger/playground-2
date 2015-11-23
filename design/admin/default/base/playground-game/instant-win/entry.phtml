@@ -1,67 +1,27 @@
 <?php $this->plugin('translate')->setTranslatorTextDomain('playgroundgame');// Pour le texte ?>
-<?php $locale= $this->plugin('translate')->getTranslator()->getLocale(); ?>
 <?php $downloadLink = $this->url('admin/'. $this->game->getClassType() .'/download', array('gameId' => $this->game->getId()));?>
-<?php
-/*$fm = $this->flashMessenger()->setNamespace('playgroundgame')->getMessages();
-if (isset($fm[0]))
-{
-    print '<span class=>' . $fm[0] . '</span>';
-}*/
-?>
-<h1><a href="<?php echo $this->url('admin/playgroundgame/edit-instantwin', array('gameId' => $this->gameId)) ?>"><?php echo $this->game->getTitle(); ?></a></h1>
+
+<h1>
+    <a href="<?php echo $this->url('admin/playgroundgame/edit-instantwin', array('gameId' => $this->gameId)) ?>">
+        <?php echo $this->game->getTitle(); ?>
+    </a>
+</h1>
 
 <h3><?php echo $this->translate('Liste des Participants'); ?></h3>
 
 <a href='<?php echo $downloadLink ?>'>Export CSV</a>
 <table class="table">
     <tr>
-        <?php if (!$this->game->getAnonymousAllowed()) : ?>
-            <th><?php echo $this->translate('Id'); ?></th>
-            <th><?php echo $this->translate('Pseudo'); ?></th>
-            <th><?php echo $this->translate('Nom'); ?></th>
-            <th><?php echo $this->translate('Prenom'); ?></th>
-            <th><?php echo $this->translate('E-mail'); ?></th>
-            <th><?php echo $this->translate('Optin partenaire'); ?></th>
-        <?php endif; ?>
-        <?php if (current($this->occurrences->getCurrentItems()) && current($this->occurrences->getCurrentItems())->getEntry()->getPlayerData()) : ?>
-        <?php $entryData = json_decode(current($this->occurrences->getCurrentItems())->getEntry()->getPlayerData()); ?>
-            <?php foreach ($entryData as $key => $attrib): ?>
-                <th><?php echo $key ?></th>
-            <?php endforeach; ?>
-        <?php endif; ?>
-        <th><?php echo $this->translate('A gagné'); ?></th>
-        <th><?php echo $this->translate('Date - H'); ?></th>
-        <th><?php echo $this->translate('Valeur'); ?></th>
-        <th><?php echo $this->translate('Lot'); ?></th>
+        <?php foreach ($this->header as $k => $v): ?>
+            <th><?php echo $k; ?></th>
+        <?php endforeach; ?>
     </tr>
-    <?php foreach ($this->occurrences as $occurrence): ?>
+    <?php foreach ($this->entries as $entry): ?>
         <tr>
-            <?php if (!$this->game->getAnonymousAllowed()) : ?>
-                <td><?php echo $occurrence->getEntry()->getUser()->getId(); ?></td>
-                <td><?php echo $occurrence->getEntry()->getUser()->getUsername(); ?></td>
-                <td><?php echo $occurrence->getEntry()->getUser()->getLastname(); ?></td>
-                <td><?php echo $occurrence->getEntry()->getUser()->getFirstname(); ?></td>
-                <td><?php echo $occurrence->getEntry()->getUser()->getEmail(); ?></td>
-                <td><?php echo $occurrence->getEntry()->getUser()->getOptinPartner(); ?></td>
-            <?php endif; ?>
-            <?php if ($occurrence->getEntry()->getPlayerData()) : ?>
-                <?php $entryData = json_decode($occurrence->getEntry()->getPlayerData()); ?>
-                <?php foreach ($entryData as $key => $attrib): ?>
-                    <td><?php if (is_array($attrib)) {echo implode(', ', $attrib); } else { echo $attrib; } ?></td>
-                <?php endforeach; ?>
-            <?php endif; ?>
-            <td><?php echo $occurrence->getEntry()->getWinner(); ?></td>
-
-            <?php //$editLink = $this->url('admin/playgroundgame/edit', array('gameId' => $game->getId()));?>
-            <?php //$deleteLink = $this->url('admin/playgroundgame/remove', array('gameId' => $game->getId()));?>
-
-            <td><?php echo $this->dateFormat($occurrence->getEntry()->getCreatedAt(), IntlDateFormatter::LONG, IntlDateFormatter::MEDIUM, $locale); ?></td>
-            <td><?php echo $occurrence->getValue(); ?></td>
-            <?php if ($occurrence->getPrize()) : ?>
-                <td><?php echo $occurrence->getPrize()->getTitle(); ?></td>
-            <?php endif; ?>
+        <?php foreach ($entry as $key => $value):?>
+            <td><?php echo $value; ?></td>
+        <?php endforeach; ?>
         </tr>
     <?php endforeach; ?>
 </table>
-
-<?php echo (count($this->occurrences)>1)?$this->paginationControl($this->occurrences, 'Sliding', 'playground-game/game/pagination_entrylist', array('classType' => $this->game->getClassType()  ,'gameId' => $this->gameId)):''; ?>
+<?php echo (count($this->paginator)>1)?$this->paginationControl($this->paginator, 'Sliding', 'playground-game/game/pagination_entrylist', array('classType' => $this->game->getClassType()  ,'gameId' => $this->gameId)):''; ?>
