@@ -1,6 +1,8 @@
 Playground 
 ==========
 
+[![Join the chat at https://gitter.im/gregorybesson/playground](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gregorybesson/playground?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Develop Branch Build Status](https://secure.travis-ci.org/gregorybesson/playground.png?branch=develop)](http://travis-ci.org/gregorybesson/playground)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/gregorybesson/playground/badges/quality-score.png?s=24a7dd37f55203ba1b7248714440d22c9c787bd5)](https://scrutinizer-ci.com/g/gregorybesson/playground/)
 [![Latest Stable Version](https://poser.pugx.org/playground/playground/v/stable.png)](https://packagist.org/packages/playground/playground)
